@@ -26,7 +26,9 @@ class SelectTeamPage extends React.Component{
             Defender: 0,
             Midfielder: 0,
             Attacker: 0,
-            showCaptain:false
+            showCaptain:false,
+            captain:0,
+            vice_captain:0
 
 
         }
@@ -122,6 +124,14 @@ class SelectTeamPage extends React.Component{
     //     this.setState({home_team: home_data}) 
          this.setState({home_team: squad_data})
         
+    }
+
+    selectCaptain=(player_id)=>{
+        this.setState({captain: player_id});
+    }
+
+    selectViceCaptain=(player_id)=>{
+        this.setState({vice_captain: player_id});
     }
 
     showCvc=()=>{
@@ -257,7 +267,10 @@ class SelectTeamPage extends React.Component{
                                         id={member.player.id}
                                         name={member.player.name}
                                         imageUrl={member.player.photo}
+                                        position={member.statistics[0].games.position}
                                         key={key}
+                                        selectCaptain={this.selectCaptain}
+                                        selectViceCaptain={this.selectViceCaptain}
                                     />
                                 </Row>
                             ))

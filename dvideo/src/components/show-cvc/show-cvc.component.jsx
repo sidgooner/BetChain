@@ -1,22 +1,31 @@
 import React from 'react'
 import './show-cvc.styles.scss'
+import {ToggleButton, ButtonGroup} from 'react-bootstrap';
+
 import {Card, Row, Col, Button}  from 'react-bootstrap'
 const ShowCVc = (props)=>{
-
+   // console.log(props)
     return(
-        <Card style={{ width: '65rem' }}>
+        <Card className='cvc-card' style={{ width: '65rem' }}>
         <Row className='no-gutters'>
         <Col md={5} lg={5}  >
-        <Card.Img variant="top" src={props.iamgeUrl} />
+        <Card.Img variant="top" className='cvc-photo' src={props.imageUrl} />
         </Col>
         <Col>
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the bulk of
-            the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Card.Text>{props.position}</Card.Text>
+          <ButtonGroup toggle className="mb-2">
+        <ToggleButton
+          onClick={() => { props.selectCaptain(props.id)}}
+          type="checkbox"
+          variant="secondary">C</ToggleButton>
+          <ToggleButton
+          onClick={() => { props.selectViceCaptain(props.id)}}
+          type="checkbox"
+          variant="secondary">VC</ToggleButton>
+          </ButtonGroup>
+
         </Card.Body>
         </Col>
         </Row>
