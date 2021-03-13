@@ -27,6 +27,7 @@ class App extends Component {
         <Route exact path="/payment" component={PaymentPage}/>
         <Route exact path="/contests" component={ContestPage}/>
         <Route  path="/select-team/:matchId/:homeId/:awayId" component={SelectTeamPage}/>
+        
       </div>
     )
   }

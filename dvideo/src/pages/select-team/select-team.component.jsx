@@ -7,6 +7,7 @@ import {Button, Container, Row, Col} from 'react-bootstrap'
 import './select-team.styles.scss'
 import {Link} from 'react-router-dom'
 import PlayerCardPitch from '../../components/player-card-pitch/player-card-pitch.component';
+import ShowCVc from '../../components/show-cvc/show-cvc.component';
 
 
 class SelectTeamPage extends React.Component{
@@ -24,7 +25,9 @@ class SelectTeamPage extends React.Component{
             Goalkeeper: 0,
             Defender: 0,
             Midfielder: 0,
-            Attacker: 0
+            Attacker: 0,
+            showCaptain:false
+
 
         }
 
@@ -121,7 +124,14 @@ class SelectTeamPage extends React.Component{
         
     }
 
-    
+    showCvc=()=>{
+        if(this.state.team_selected.length<11) {
+            window.alert("select 11 players");
+            return
+        }
+
+        this.setState({showCaptain: !this.state.showCaptain})
+    }
      
     removePlayer=async(member)=>{
 
@@ -183,7 +193,9 @@ class SelectTeamPage extends React.Component{
     render(){
         console.log(this.state);
         //console.log( this.props )
-        return(
+
+        if(!this.state.showCaptain)
+        {return(
             <Container>
                 <Row>
                 {this.state.home_team?(
@@ -226,13 +238,34 @@ class SelectTeamPage extends React.Component{
                 </Col>
             </Row>   
                 <Row>
-                <Link to={`/choosecvc/${this.props.match.params.matchId}`}>
-                    <Button variant='success'>Choose your Commanders!!</Button>
-                </Link>
+                
+                    <Button variant='success' onClick={() => { this.showCvc()}}>Choose your Commanders!!</Button>
+                
                 </Row> 
             </Container>
             
-            )
+            )}
+
+        else{
+            return(<Container>
+                <Row>
+                    <Col>
+                        {
+                            this.state.team_selected.map((member, key)=>(
+                                <Row>
+                                    <ShowCVc
+                                        id={member.player.id}
+                                        name={member.player.name}
+                                        imageUrl={member.player.photo}
+                                        key={key}
+                                    />
+                                </Row>
+                            ))
+                        }
+                    </Col>
+                </Row>
+            </Container>)
+        }
     }
 
 }
