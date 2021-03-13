@@ -1,0 +1,16 @@
+.player-cards{
+    display: flex;
+    flex-wrap: wrap;
+    height: 2000px;
+    overflow: scroll;   
+    //width: 50%;
+    margin: 20px;
+    padding: 20px;
+   // flex-grow: 1;
+}
+.player-button{
+    border: none;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+}

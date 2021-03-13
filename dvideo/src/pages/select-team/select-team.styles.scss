@@ -1,0 +1,30 @@
+.select-team{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    
+   
+}
+
+.pitch{
+
+ background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Football_pitch.svg/1200px-Football_pitch.svg.png");
+// width: 1000px;
+ background-repeat:no-repeat; 
+ background-size:cover;
+ height:48em ;
+ margin: 15px 10px 10px 0px;
+ padding: 15px 10px 10px 0px;
+}
+
+.player-button{
+    padding: 0px;
+}
+.player-cards{
+   // display: flex;
+    //flex-wrap: wrap;
+    height: 48em;
+    overflow-y: scroll;   
+    overflow-x: hidden;
+   // flex-grow: 1;
+}
