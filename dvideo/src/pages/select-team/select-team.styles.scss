@@ -7,7 +7,8 @@
 }
 
 .pitch{
-
+// display: flex;
+ //flex-direction: row;
  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Football_pitch.svg/1200px-Football_pitch.svg.png");
 // width: 1000px;
  background-repeat:no-repeat; 
@@ -19,6 +20,13 @@
 
 .player-button{
     padding: 0px;
+    //display: flex;
+    //flex-direction: row;
+    
+}
+
+.player-button-on-pitch{
+    //width: 5rem;
 }
 .player-cards{
    // display: flex;

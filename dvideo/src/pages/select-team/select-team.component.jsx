@@ -22,10 +22,10 @@ class SelectTeamPage extends React.Component{
             away_team: [],
             home_no: 0,
             away_no: 0,
-            Goalkeeper: 0,
-            Defender: 0,
-            Midfielder: 0,
-            Attacker: 0,
+            Goalkeeper: [],
+            Defender: [],
+            Midfielder: [],
+            Attacker: [],
             showCaptain:false,
             captain:0,
             vice_captain:0
@@ -150,32 +150,32 @@ class SelectTeamPage extends React.Component{
         await this.setState({
             team_selected: this.state.team_selected.filter(el => el !== member)})
             var team_new = this.state.home_team.concat(member);
-        await this.setState({home_team: team_new, [position]:this.state.[position] - 1});
+        await this.setState({home_team: team_new, [position]:this.state.[position].filter(el => el !== member)});
     }
 
     selectPlayer= async(member)=>{
 
         var position = member.statistics[0].games.position;
 
-        if(position === "Goalkeeper" && this.state.Goalkeeper> 0)
+        if(position === "Goalkeeper" && this.state.Goalkeeper.length> 0)
         {
             window.alert("you cant select more than 1 Goalkeeper");
             return;
         }
 
-        if(position === "Midfielder" && this.state.Midfielder === 5)
+        if(position === "Midfielder" && this.state.Midfielder.length === 5)
         {
             window.alert("you cant select more than 5 Midfielders");
             return;
         }
 
-        if(position === "Defender" && this.state.Defender === 5)
+        if(position === "Defender" && this.state.Defender.length === 5)
         {
             window.alert("you cant select more than 5 Defenders");
             return;
         }
 
-        if(position === "Attacker" && this.state.Attacker === 3)
+        if(position === "Attacker" && this.state.Attacker.length === 3)
         {
             window.alert("you cant select more than 3 Attackers");
             return;
@@ -194,7 +194,7 @@ class SelectTeamPage extends React.Component{
 
          
 
-        await this.setState({team_selected: team_new, [position]:this.state.[position] + 1  });
+        await this.setState({team_selected: team_new, [position]:this.state.[position].concat(member)  });
          
 
         console.log(this.state)
@@ -232,7 +232,7 @@ class SelectTeamPage extends React.Component{
                 
             }
                 <Col className='pitch'>
-                    {
+                    {/* {
                         this.state.team_selected.map((member, key)=>(
                             <button className="player-button" onClick={() => { this.removePlayer(member)}}>
                             <PlayerCardPitch 
@@ -244,7 +244,66 @@ class SelectTeamPage extends React.Component{
                             />
                             </button>
                         ))
+                    } */}
+                    <Container>
+                        <Row className='justify-content-center'>
+                        {
+                        this.state.Goalkeeper.map((member, key)=>(
+                            <button className="player-button" onClick={() => { this.removePlayer(member)}}>
+                            <PlayerCardPitch 
+                               id={member.player.id}
+                               name={member.player.name}
+                               imageUrl={member.player.photo}
+                               key={key}
+                                
+                            />
+                            </button>
+                        ))
                     }
+                        </Row>
+                        <Row className='justify-content-center'>{
+                        this.state.Defender.map((member, key)=>(
+                            <button className="player-button" onClick={() => { this.removePlayer(member)}}>
+                            <PlayerCardPitch 
+                               id={member.player.id}
+                               name={member.player.name}
+                               imageUrl={member.player.photo}
+                               key={key}
+                                
+                            />
+                            </button>
+                        ))
+                    }
+                    </Row>
+                    <Row className='justify-content-center'>
+                            {
+                        this.state.Midfielder.map((member, key)=>(
+                            <button className="player-button" onClick={() => { this.removePlayer(member)}}>
+                            <PlayerCardPitch 
+                               id={member.player.id}
+                               name={member.player.name}
+                               imageUrl={member.player.photo}
+                               key={key}
+                                
+                            />
+                            </button>
+                        ))
+                             }
+                    </Row>
+                        <Row className='justify-content-center'>{
+                        this.state.Attacker.map((member, key)=>(
+                            <button className="player-button" onClick={() => { this.removePlayer(member)}}>
+                            <PlayerCardPitch 
+                               id={member.player.id}
+                               name={member.player.name}
+                               imageUrl={member.player.photo}
+                               key={key}
+                                
+                            />
+                            </button>
+                        ))
+                    }</Row>
+                    </Container>
                 </Col>
             </Row>   
                 <Row>

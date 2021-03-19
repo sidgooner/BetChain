@@ -18,13 +18,16 @@ const ShowCVc = (props)=>{
           <ButtonGroup toggle className="mb-2">
         <ToggleButton
           onClick={() => { props.selectCaptain(props.id)}}
-          type="checkbox"
+          type="radio"
+        //   checked={unchecked}
           variant="secondary">C</ToggleButton>
           <ToggleButton
           onClick={() => { props.selectViceCaptain(props.id)}}
-          type="checkbox"
+          type="radio"
+        //   checked={unchecked}
           variant="secondary">VC</ToggleButton>
           </ButtonGroup>
+
 
         </Card.Body>
         </Col>
