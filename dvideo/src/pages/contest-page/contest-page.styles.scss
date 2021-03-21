@@ -1,4 +1,20 @@
-.tiles{
+.tiles {
     display: flex;
-    flex-direction: column ;
+    flex-direction: column;
+}
+
+.home {
+    padding-left: 530px;
+}
+
+.heading {
+    text-align: center;
+    padding: 10px;
+    background: black;
+    color: white;
+}
+
+.advertisement {
+    margin-left: 150px;
+    border: 1px solid;
 }
