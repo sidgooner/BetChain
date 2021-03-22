@@ -2,6 +2,7 @@ import React from 'react';
 import ContestTile from '../../components/contest-tile/contest-tile.component';
 import './contest-page.styles.scss'
 import { Link } from 'react-router-dom'
+import { CONTEST_DATA } from './contest-data';
 
 class ContestPage extends React.Component {
     constructor(props) {
@@ -13,30 +14,35 @@ class ContestPage extends React.Component {
     }
 
     componentDidMount() {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var dd2 = String(today.getDate() + 7).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
+        // var today = new Date();
+        // var dd = String(today.getDate()).padStart(2, '0');
+        // var dd2 = String(today.getDate() + 7).padStart(2, '0');
+        // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        // var yyyy = today.getFullYear();
 
-        var from = yyyy + '-' + mm + '-' + dd;
+        // var from = yyyy + '-' + mm + '-' + dd;
 
-        var to = yyyy + '-' + mm + '-' + dd2;
+        // var to = yyyy + '-' + mm + '-' + dd2;
 
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                'x-rapidapi-host': 'v3.football.api-sports.io',
-                'x-rapidapi-key': '718b15b972a3bc571a36b512a7bf94c6'
-            },
-        };
+        // const requestOptions = {
+        //     method: 'GET',
+        //     headers: {
+        //         'x-rapidapi-host': 'v3.football.api-sports.io',
+        //         'x-rapidapi-key': '718b15b972a3bc571a36b512a7bf94c6'
+        //     },
+        // };
 
-        fetch(`https://v3.football.api-sports.io/fixtures?league=39&season=2020&from=${from}&to=${to}`, requestOptions)
-            .then(response => response.json())
-            .then((data) => {
-                this.setState({ fixture_data: data.response });
-                // console.log(this.state.fixture_data)
-            })
+        // fetch(`https://v3.football.api-sports.io/fixtures?league=39&season=2020&from=${from}&to=${to}`, requestOptions)
+        //     .then(response => response.json())
+        //     .then((data) => {
+        //         this.setState({ fixture_data: data.response });
+        //         // console.log(this.state.fixture_data)
+        //     })
+
+
+        //====================== using non api data=================
+        
+        this.setState({fixture_data: CONTEST_DATA})
     }
 
     render() {
