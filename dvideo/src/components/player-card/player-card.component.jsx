@@ -8,7 +8,8 @@ const PlayerCard = (props)=>{
         <Card className='player-card' style={{ width: '9rem' }}>
             <Card.Img variant="top" src={props.imageUrl} />
             <Card.Body className='non-pitch'>
-                <Card.Text >{props.name}</Card.Text>
+                <Card.Text className='player-name'>{props.name}</Card.Text>
+                <Card.Text className='position'>{props.position}</Card.Text>
                 <Button variant="primary" size="sm">i</Button>
             </Card.Body>
         </Card>

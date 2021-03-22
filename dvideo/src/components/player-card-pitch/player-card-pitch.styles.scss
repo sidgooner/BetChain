@@ -10,17 +10,24 @@
     padding-right:5px;
     
   }
+  #p{
+    margin-bottom: 0%;
+  }
   .player-card-pitch.card{
-      height: 110px;
+    height: 130px;
     transition:0.5s;
     cursor:pointer;
     overflow: hidden;
   }
   .player-name-pitch{  
-    font-size:10px;
+    font-size:0.6em;
     transition:1s;
+    
     cursor:pointer;
     
+  }
+  .player-position-pitch{
+    font-size: 8px;
   }
   .player-body.card-body{
       padding-top: 0rem;

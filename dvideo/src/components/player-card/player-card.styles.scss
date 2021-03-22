@@ -4,13 +4,15 @@ img{
     height:120px;
     width:80%;
   }
-  
+  #p{
+    margin-bottom: 0%;
+  }
   div [class^="col-"]{
     padding-left:5px;
     padding-right:5px;
   }
   .player-card.card{
-    height: 200px;
+    height: 210px;
     transition:0.5s;
     cursor:pointer;
   }
@@ -18,6 +20,13 @@ img{
     font-size:15px;
     transition:1s;
     cursor:pointer;
+  }
+  .position{
+    font-size: 10px;
+   // padding: 1px;
+  }
+  .player-name{
+    font-size: 12px;
   }
   .card-title i{  
     font-size:15px;
@@ -64,6 +73,6 @@ img{
     transform: scale3d(1, 1, 1);
   }
   .button{
-      height: 1px;
+      height: 0.5px;
       padding: 10px;
   }

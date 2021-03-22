@@ -221,7 +221,7 @@ class SelectTeamPage extends React.Component{
                                 name={member.player.name}
                                 imageUrl={member.player.photo}
                                 key={key}
-                                    
+                                 position={member.statistics[0].games.position}   
                                 />
                                 </button>
                              
@@ -252,10 +252,11 @@ class SelectTeamPage extends React.Component{
                             <button className="player-button" onClick={() => { this.removePlayer(member)}}>
                             <PlayerCardPitch 
                                id={member.player.id}
-                               name={member.player.name}
+                               first_name={member.player.firstname}
+                               last_name={member.player.lastname}
                                imageUrl={member.player.photo}
                                key={key}
-                                
+                               position={member.statistics[0].games.position} 
                             />
                             </button>
                         ))
@@ -266,10 +267,11 @@ class SelectTeamPage extends React.Component{
                             <button className="player-button" onClick={() => { this.removePlayer(member)}}>
                             <PlayerCardPitch 
                                id={member.player.id}
-                               name={member.player.name}
+                               first_name={member.player.firstname}
+                               last_name={member.player.lastname}
                                imageUrl={member.player.photo}
                                key={key}
-                                
+                               position={member.statistics[0].games.position} 
                             />
                             </button>
                         ))
@@ -281,10 +283,11 @@ class SelectTeamPage extends React.Component{
                             <button className="player-button" onClick={() => { this.removePlayer(member)}}>
                             <PlayerCardPitch 
                                id={member.player.id}
-                               name={member.player.name}
+                               first_name={member.player.firstname}
+                               last_name={member.player.lastname}
                                imageUrl={member.player.photo}
                                key={key}
-                                
+                                position={member.statistics[0].games.position}
                             />
                             </button>
                         ))
@@ -295,10 +298,11 @@ class SelectTeamPage extends React.Component{
                             <button className="player-button" onClick={() => { this.removePlayer(member)}}>
                             <PlayerCardPitch 
                                id={member.player.id}
-                               name={member.player.name}
+                               first_name={member.player.firstname}
+                               last_name={member.player.lastname}
                                imageUrl={member.player.photo}
                                key={key}
-                                
+                               position={member.statistics[0].games.position} 
                             />
                             </button>
                         ))
