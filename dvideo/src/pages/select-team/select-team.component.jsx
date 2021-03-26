@@ -200,6 +200,32 @@ class SelectTeamPage extends React.Component{
        // console.log(this.state)
     }
 
+    selectTeam=()=>{
+        
+        if(!this.state.captain || !this.state.vice_captain){
+            window.alert("Select your captain and vice captain");
+        }
+
+        else{
+            // const res = await fetch('http://localhost:1337/api/select-team',{
+            //     method: 'post',
+                
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: JSON.stringify({
+            //         displayName, email, password
+            //     })
+            // }).then((t)=>t.json())
+
+            //  console.log(res);
+            
+            //  if(res.status==="err") {
+            //      window.alert(res.message);
+            //  }
+        }
+    }
+
     render(){
         console.log(this.state);
         //console.log( this.props )
@@ -340,6 +366,9 @@ class SelectTeamPage extends React.Component{
                                 </Row>
                             ))
                         }
+                        <Row>
+                            <Button variant='success' onClick={() => { this.selectTeam()}}>Select Team!</Button>
+                        </Row>
                     </Col>
                 </Row>
             </Container>)
