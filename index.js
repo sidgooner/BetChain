@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-
+var User = require('./models/user');
 const app = express();
 
 require("dotenv").config();
@@ -32,7 +32,9 @@ app.get('/', (req, res)=>{
     res.send('hi');
 });
 
-
+app.post('/api/select-team', async(req, res)=>{
+  console.log(req.body);
+})
 
 
 app.listen(1337,()=>{console.log("Listening");});

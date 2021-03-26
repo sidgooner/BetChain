@@ -200,29 +200,42 @@ class SelectTeamPage extends React.Component{
        // console.log(this.state)
     }
 
-    selectTeam=()=>{
+    selectTeam=async()=>{
         
         if(!this.state.captain || !this.state.vice_captain){
             window.alert("Select your captain and vice captain");
         }
 
         else{
-            // const res = await fetch('http://localhost:1337/api/select-team',{
-            //     method: 'post',
-                
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: JSON.stringify({
-            //         displayName, email, password
-            //     })
-            // }).then((t)=>t.json())
 
-            //  console.log(res);
+            const user_name = localStorage.getItem('user');
+
+            const team = this.state.team_selected;
+
+            const captain = this.state.captain;
+
+            const viceCaptain = this.state.vice_captain;
+
+            const matchId = this.props.match.params.matchId;
+
+
+            const res = await fetch('http://localhost:1337/api/select-team',{
+                method: 'post',
+                
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    
+                    user_name, team, captain, viceCaptain, matchId
+                })
+            }).then((t)=>t.json())
+
+             console.log(res);
             
-            //  if(res.status==="err") {
-            //      window.alert(res.message);
-            //  }
+             if(res.status==="err") {
+                 window.alert(res.message);
+             }
         }
     }
 
