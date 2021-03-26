@@ -123,7 +123,26 @@ class SelectTeamPage extends React.Component{
 
     //     this.setState({home_team: home_data}) 
          this.setState({home_team: squad_data})
+
+        // ===================== getting previous team selected=================
+        var Goalkeeper = [], Defender=[], Midfielder=[], Attacker=[], captain1, vice_captain1;
+        const user_name= localStorage.getItem('user');
+        await fetch(`http://localhost:1337/api/select-team/${user_name}/${matchId}`)
+            .then((response)=>response.json())
+            .then((data)=> {
+                console.log(data);
+                Goalkeeper=data.Goalkeeper;
+                Defender = data.Defender;
+                Midfielder= data.Midfielder;
+                Attacker = data.Attacker;
+                captain1= data.captain;
+                vice_captain1= data.viceCaptain;
+            });
         
+       // if(team_selected1)
+      await this.setState({Goalkeeper: Goalkeeper, Defender:Defender, Midfielder: Midfielder, Attacker: Attacker, captain: captain1, vice_captain: vice_captain1});
+        
+        console.log(this.state);
     }
 
     selectCaptain=(player_id)=>{
@@ -210,7 +229,13 @@ class SelectTeamPage extends React.Component{
 
             const user_name = localStorage.getItem('user');
 
-            const team = this.state.team_selected;
+            const Goalkeeper = this.state.Goalkeeper;
+
+            const Defender = this.state.Defender;
+
+            const Midfielder = this.state.Midfielder;
+
+            const Attacker = this.state.Attacker;
 
             const captain = this.state.captain;
 
@@ -227,7 +252,7 @@ class SelectTeamPage extends React.Component{
                 },
                 body: JSON.stringify({
                     
-                    user_name, team, captain, viceCaptain, matchId
+                    user_name, Goalkeeper, Defender, Midfielder, Attacker, captain, viceCaptain, matchId
                 })
             }).then((t)=>t.json())
 
@@ -391,10 +416,3 @@ class SelectTeamPage extends React.Component{
 }
 
 export default SelectTeamPage;
-
-
-
-
-
-
-

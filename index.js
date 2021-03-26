@@ -32,8 +32,44 @@ app.get('/', (req, res)=>{
     res.send('hi');
 });
 
+
+app.get('/api/select-team/:teamid/:matchId', async(req, res)=>{
+  
+  const user = await User.findOne({user_name: req.params.teamid, matchId: req.params.matchId});
+
+  console.log(req.params.id);
+  
+    if(!user)
+    {
+        res.send(null);
+    }
+
+    console.log(user);
+    res.send(user); 
+    
+
+})
+
 app.post('/api/select-team', async(req, res)=>{
-  console.log(req.body);
+  //console.log(req.body);
+  User.create({
+    user_name: req.body.user_name,
+    Goalkeeper: req.body.Goalkeeper,
+    Defender: req.body.Defender,
+    Midfielder: req.body.Midfielder,
+    Attacker: req.body.Attacker,
+    captain: req.body.captain,
+    viceCaptain: req.body.viceCaptain,
+    matchId: req.body.matchId
+  },(err, newlyCreated)=>{
+    if(err)
+    {
+      console.log(err);
+    }
+    else{
+      console.log('success');
+    }
+  })
 })
 
 
