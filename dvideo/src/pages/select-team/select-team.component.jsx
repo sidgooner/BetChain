@@ -189,7 +189,7 @@ class SelectTeamPage extends React.Component{
         await this.setState({
             home_team: this.state.home_team.filter(el => el !== member)})
         
-         console.log(this.state);
+        // console.log(this.state);
          var team_new = this.state.team_selected.concat(member);
 
          
@@ -197,13 +197,13 @@ class SelectTeamPage extends React.Component{
         await this.setState({team_selected: team_new, [position]:this.state.[position].concat(member)  });
          
 
-        console.log(this.state)
+       // console.log(this.state)
     }
 
     render(){
         console.log(this.state);
         //console.log( this.props )
-
+        console.log(localStorage.getItem('user'));
         if(!this.state.showCaptain)
         {return(
             <Container>
@@ -334,6 +334,8 @@ class SelectTeamPage extends React.Component{
                                         key={key}
                                         selectCaptain={this.selectCaptain}
                                         selectViceCaptain={this.selectViceCaptain}
+                                        captain={this.state.captain}
+                                        viceCaptain={this.state.vice_captain}
                                     />
                                 </Row>
                             ))
