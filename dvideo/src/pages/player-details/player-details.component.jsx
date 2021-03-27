@@ -9,7 +9,7 @@ class PlayerDetails extends React.Component{
         super(props);
 
         this.state={
-            player: null
+            player: squad_data[1]
         }
     }
 
@@ -22,7 +22,7 @@ class PlayerDetails extends React.Component{
         console.log(this.state);
         return(
             <div>
-                player details
+               {console.log(this.state.player.statistics)}
             </div>
         );
     }

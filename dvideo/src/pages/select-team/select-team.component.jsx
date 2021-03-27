@@ -28,8 +28,8 @@ class SelectTeamPage extends React.Component{
             Attacker: [],
             showCaptain:false,
             captain:0,
-            vice_captain:0
-
+            vice_captain:0,
+            fixture_data: null
 
         }
 
@@ -56,6 +56,19 @@ class SelectTeamPage extends React.Component{
        var homeId = this.props.match.params.homeId;
        var awayId = this.props.match.params.awayId;
        var matchId = this.props.match.params.matchId;
+
+
+         // ==================== fetch match data===============================
+
+    //      var fixture_data = [];
+                
+    //      await fetch(`https://v3.football.api-sports.io/fixtures?id=${matchId}`, requestOptions)
+    //       .then(response => response.json())
+    //       .then((data)=>{
+    //           fixture_data = data.response;
+    //       })
+      
+    //   this.setState({fixture_data: fixture_data});
 
         // //put fixture id and team id for reference team
     //     var home_data = [];
@@ -121,7 +134,9 @@ class SelectTeamPage extends React.Component{
     //     console.log(this.state.away_team);
     //     home_data = home_data.concat(away_data);
 
-    //     this.setState({home_team: home_data}) 
+    //     this.setState({home_team: home_data})
+    
+    
          this.setState({home_team: squad_data})
 
         // ===================== getting previous team selected=================
@@ -130,7 +145,7 @@ class SelectTeamPage extends React.Component{
         await fetch(`http://localhost:1337/api/select-team/${user_name}/${matchId}`)
             .then((response)=>response.json())
             .then((data)=> {
-                console.log(data);
+                //console.log(data);
                 Goalkeeper=data.Goalkeeper;
                 Defender = data.Defender;
                 Midfielder= data.Midfielder;
@@ -140,9 +155,35 @@ class SelectTeamPage extends React.Component{
             });
         
        // if(team_selected1)
-      await this.setState({Goalkeeper: Goalkeeper, Defender:Defender, Midfielder: Midfielder, Attacker: Attacker, captain: captain1, vice_captain: vice_captain1});
+       var team_selected=[];
+       team_selected = team_selected.concat(Goalkeeper);
+       team_selected = team_selected.concat(Defender);
+       team_selected= team_selected.concat(Midfielder);
+       team_selected= team_selected.concat(Attacker);
+
+       // remove selected players from home_team
+
+       var home_team1 = this.state.home_team;
         
-        console.log(this.state);
+      for(let i=0; i<home_team1.length; i++ ){
+
+        for(let j=0;j<team_selected.length; j++)
+        {
+            if(home_team1[i].player.id === team_selected[j].player.id)
+            {
+                home_team1.splice(i,1);
+            }
+        }
+
+      }
+      
+      console.log('home');
+      console.log(home_team1);
+       
+      await this.setState({Goalkeeper: Goalkeeper, Defender:Defender, Midfielder: Midfielder, Attacker: Attacker, captain: captain1, vice_captain: vice_captain1, team_selected: team_selected, home_team: home_team1});
+        
+        //console.log(this.state);
+
     }
 
     selectCaptain=(player_id)=>{
@@ -268,11 +309,11 @@ class SelectTeamPage extends React.Component{
         console.log(this.state);
         //console.log( this.props )
         console.log(localStorage.getItem('user'));
-        if(!this.state.showCaptain)
+        if(!this.state.showCaptain )
         {return(
             <Container>
                 <Row>
-                {this.state.home_team?(
+                {(this.state.home_team )?(
                     <Col className='player-cards'>
                     
                     {
@@ -296,19 +337,6 @@ class SelectTeamPage extends React.Component{
                 
             }
                 <Col className='pitch'>
-                    {/* {
-                        this.state.team_selected.map((member, key)=>(
-                            <button className="player-button" onClick={() => { this.removePlayer(member)}}>
-                            <PlayerCardPitch 
-                               id={member.player.id}
-                               name={member.player.name}
-                               imageUrl={member.player.photo}
-                               key={key}
-                                
-                            />
-                            </button>
-                        ))
-                    } */}
                     <Container>
                         <Row className='justify-content-center'>
                         {
@@ -383,7 +411,7 @@ class SelectTeamPage extends React.Component{
             
             )}
 
-        else{
+        else if(this.state.showCaptain ){
             return(<Container>
                 <Row>
                     <Col>
