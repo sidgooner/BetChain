@@ -1,6 +1,6 @@
 import React from 'react'
 import { squad_data } from '../../components/squad/squad_data';
-
+import {Container} from 'react-bootstrap'
 import './player-details.styles.scss'
 
 class PlayerDetails extends React.Component{
@@ -21,11 +21,11 @@ class PlayerDetails extends React.Component{
 
         console.log(this.state);
         return(
-            <div>
-               {console.log(this.state.player.statistics)}
-
+            
+           <div>
             <h1 className="heading">Player-Details</h1>
 
+            <Container>
         <img src={this.state.player.player.photo}  class="center"/>
             <h3>Basic information</h3>
 
@@ -121,7 +121,7 @@ class PlayerDetails extends React.Component{
 </tr>
 </table>
 
-            </div>
+            </Container></div>
         );
     }
 }
