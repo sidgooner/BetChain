@@ -123,7 +123,26 @@ class SelectTeamPage extends React.Component{
 
     //     this.setState({home_team: home_data}) 
          this.setState({home_team: squad_data})
+
+        // ===================== getting previous team selected=================
+        var Goalkeeper = [], Defender=[], Midfielder=[], Attacker=[], captain1, vice_captain1;
+        const user_name= localStorage.getItem('user');
+        await fetch(`http://localhost:1337/api/select-team/${user_name}/${matchId}`)
+            .then((response)=>response.json())
+            .then((data)=> {
+                console.log(data);
+                Goalkeeper=data.Goalkeeper;
+                Defender = data.Defender;
+                Midfielder= data.Midfielder;
+                Attacker = data.Attacker;
+                captain1= data.captain;
+                vice_captain1= data.viceCaptain;
+            });
         
+       // if(team_selected1)
+      await this.setState({Goalkeeper: Goalkeeper, Defender:Defender, Midfielder: Midfielder, Attacker: Attacker, captain: captain1, vice_captain: vice_captain1});
+        
+        console.log(this.state);
     }
 
     selectCaptain=(player_id)=>{
@@ -200,29 +219,48 @@ class SelectTeamPage extends React.Component{
        // console.log(this.state)
     }
 
-    selectTeam=()=>{
+    selectTeam=async()=>{
         
         if(!this.state.captain || !this.state.vice_captain){
             window.alert("Select your captain and vice captain");
         }
 
         else{
-            // const res = await fetch('http://localhost:1337/api/select-team',{
-            //     method: 'post',
-                
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: JSON.stringify({
-            //         displayName, email, password
-            //     })
-            // }).then((t)=>t.json())
 
-            //  console.log(res);
+            const user_name = localStorage.getItem('user');
+
+            const Goalkeeper = this.state.Goalkeeper;
+
+            const Defender = this.state.Defender;
+
+            const Midfielder = this.state.Midfielder;
+
+            const Attacker = this.state.Attacker;
+
+            const captain = this.state.captain;
+
+            const viceCaptain = this.state.vice_captain;
+
+            const matchId = this.props.match.params.matchId;
+
+
+            const res = await fetch('http://localhost:1337/api/select-team',{
+                method: 'post',
+                
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    
+                    user_name, Goalkeeper, Defender, Midfielder, Attacker, captain, viceCaptain, matchId
+                })
+            }).then((t)=>t.json())
+
+             console.log(res);
             
-            //  if(res.status==="err") {
-            //      window.alert(res.message);
-            //  }
+             if(res.status==="err") {
+                 window.alert(res.message);
+             }
         }
     }
 
@@ -378,10 +416,3 @@ class SelectTeamPage extends React.Component{
 }
 
 export default SelectTeamPage;
-
-
-
-
-
-
-
