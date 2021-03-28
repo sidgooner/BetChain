@@ -12,6 +12,8 @@ import HomePage from '../pages/home-page/home-page.component';
 import SelectTeamPage from '../pages/select-team/select-team.component';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import PlayerDetails from '../pages/player-details/player-details.component';
+import RulesPage from '../pages/rules/rules.component';
+import Points from '../pages/points/points.component';
 
 
 class App extends Component {
@@ -28,6 +30,8 @@ class App extends Component {
         <Route exact path="/payment" component={PaymentPage}/>
         <Route exact path="/contests" component={ContestPage}/>
         <Route  path="/select-team/:matchId/:homeId/:awayId" component={SelectTeamPage}/>
+        <Route  path="/rules" component={RulesPage}/>
+        <Route  path="/points" component={Points}/>
         <Route path='/player-detail/:playerId' component={PlayerDetails}></Route>
         
       </div>

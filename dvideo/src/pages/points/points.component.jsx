@@ -95,5 +95,5 @@ const Points=()=>{
         </div>
 
     )
-
-    export default pointspage;
+    }
+    export default Points;
