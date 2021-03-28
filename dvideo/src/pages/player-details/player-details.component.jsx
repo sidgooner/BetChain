@@ -57,67 +57,61 @@ class PlayerDetails extends React.Component{
 <h4>Premier league</h4>
 <table id="basic_info">
   <tr>
-    <th>red-cards</th>
-    <th>dribbles</th>
-    <th>fouls</th>
-    <th>games</th>
-    <th>goals saved</th>
-    <th>passes</th>
-    <th>shots</th>
+    <th>position</th>
+    <th>appearences</th>
+    <th>red-card</th>
+    <th>yellow-card</th>
+    <th>goals-saved</th>
+    <th>goals-scored</th>
   </tr>
   <tr>
-    <td>{this.state.player.statistics[0].cards.red}</td>
-    <td>{this.state.player.statistics[0].dribbles.attemts}</td>
-    <td>{this.state.player.statistics[0].fouls.commited}</td>
+    <td>{this.state.player.statistics[0].games.position}</td>
     <td>{this.state.player.statistics[0].games.appearences}</td>
-    <td>{this.state.player.statistics[0].goals.saved}</td>
-    <td>{this.state.player.statistics[0].passes.total}</td>
-    <td>{this.state.player.statistics[0].shots.total}</td>
+    <td>{this.state.player.statistics[0].cards.red}</td>
+    <td>{this.state.player.statistics[0].cards.yellow}</td>
+    <td>{this.state.player.statistics[0].goals.saves}</td>
+    <td>{this.state.player.statistics[0].goals.conceded}</td>
 </tr>
 </table>
 <h4>league cup</h4>
 
 <table id="basic_info">
-  <tr>
-    <th>red-cards</th>
-    <th>dribbles</th>
-    <th>fouls</th>
-    <th>games</th>
-    <th>goals saved</th>
-    <th>passes</th>
-    <th>shots</th>
+<tr>
+    <th>position</th>
+    <th>appearences</th>
+    <th>red-card</th>
+    <th>yellow-card</th>
+    <th>goals-saved</th>
+    <th>goals-scored</th>
   </tr>
   <tr>
-    <td>{this.state.player.statistics[1].cards.red}</td>
-    <td>{this.state.player.statistics[1].dribbles.attemts}</td>
-    <td>{this.state.player.statistics[1].fouls.commited}</td>
+    <td>{this.state.player.statistics[1].games.position}</td>
     <td>{this.state.player.statistics[1].games.appearences}</td>
-    <td>{this.state.player.statistics[1].goals.saved}</td>
-    <td>{this.state.player.statistics[1].passes.total}</td>
-    <td>{this.state.player.statistics[1].shots.total}</td>
+    <td>{this.state.player.statistics[1].cards.red}</td>
+    <td>{this.state.player.statistics[1].cards.yellow}</td>
+    <td>{this.state.player.statistics[1].goals.saves}</td>
+    <td>{this.state.player.statistics[1].goals.conceded}</td>
 </tr>
 </table>
 
 <h4>FA cup</h4>
 
 <table id="basic_info">
-  <tr>
-    <th>red-cards</th>
-    <th>dribbles</th>
-    <th>fouls</th>
-    <th>games</th>
-    <th>goals saved</th>
-    <th>passes</th>
-    <th>shots</th>
+<tr>
+    <th>position</th>
+    <th>appearences</th>
+    <th>red-card</th>
+    <th>yellow-card</th>
+    <th>goals-saved</th>
+    <th>goals-scored</th>
   </tr>
   <tr>
-    <td>{this.state.player.statistics[2].cards.red}</td>
-    <td>{this.state.player.statistics[2].dribbles.attemts}</td>
-    <td>{this.state.player.statistics[2].fouls.commited}</td>
+    <td>{this.state.player.statistics[2].games.position}</td>
     <td>{this.state.player.statistics[2].games.appearences}</td>
-    <td>{this.state.player.statistics[2].goals.saved}</td>
-    <td>{this.state.player.statistics[2].passes.total}</td>
-    <td>{this.state.player.statistics[2].shots.total}</td>
+    <td>{this.state.player.statistics[2].cards.red}</td>
+    <td>{this.state.player.statistics[2].cards.yellow}</td>
+    <td>{this.state.player.statistics[2].goals.saves}</td>
+    <td>{this.state.player.statistics[2].goals.conceded}</td>
 </tr>
 </table>
 
