@@ -1,0 +1,17 @@
+.pitch-started{
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Football_pitch.svg/1200px-Football_pitch.svg.png");
+// width: 1000px;
+ background-repeat:no-repeat; 
+ background-size:contain;
+ background-position: center center;
+
+ height:50em ;
+ overflow: hidden;
+ margin: 15px 10px 10px 0px;
+ padding: 15px 10px 10px 0px;
+}
+
+.justify-content-center.row{
+    height: 150px;
+    margin-top: 30px;
+}

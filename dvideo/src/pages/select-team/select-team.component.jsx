@@ -10,6 +10,7 @@ import PlayerCardPitch from '../../components/player-card-pitch/player-card-pitc
 import ShowCVc from '../../components/show-cvc/show-cvc.component';
 import PlayerCardPitchStarted from '../../components/player-card-pitch-match-started/player-card-pitch-match-started.component';
 import { FIXTURE_DATA } from './fixture-data';
+import MatchStarted from '../../components/match-started/match-started.component';
 
 
 class SelectTeamPage extends React.Component{
@@ -461,72 +462,14 @@ class SelectTeamPage extends React.Component{
                     {
                         (this.state.fixture_data)?
                         (
+                            <MatchStarted
+                            Goalkeeper={this.state.Goalkeeper}
+                            Defender={this.state.Defender}
+                            Midfielder={this.state.Midfielder}
+                            Attacker={this.state.Attacker}
+                            matchId={this.props.match.params.matchId}
+                            ></MatchStarted>
                             
-                            <Col className='pitch-started'>
-                    <Container>
-                        <Row className='justify-content-center'>
-                        {
-                        this.state.Goalkeeper.map((member, key)=>(
-                            
-                            <PlayerCardPitchStarted 
-                               id={member.player.id}
-                               first_name={member.player.firstname}
-                               last_name={member.player.lastname}
-                               imageUrl={member.player.photo}
-                               key={key}
-                               position={member.statistics[0].games.position} 
-                            />
-                            
-                        ))
-                    }
-                        </Row>
-                        <Row className='justify-content-center'>{
-                        this.state.Defender.map((member, key)=>(
-                            
-                            <PlayerCardPitchStarted 
-                               id={member.player.id}
-                               first_name={member.player.firstname}
-                               last_name={member.player.lastname}
-                               imageUrl={member.player.photo}
-                               key={key}
-                               position={member.statistics[0].games.position} 
-                            />
-                            
-                        ))
-                    }
-                    </Row>
-                    <Row className='justify-content-center'>
-                            {
-                        this.state.Midfielder.map((member, key)=>(
-                            
-                            <PlayerCardPitchStarted
-                               id={member.player.id}
-                               first_name={member.player.firstname}
-                               last_name={member.player.lastname}
-                               imageUrl={member.player.photo}
-                               key={key}
-                                position={member.statistics[0].games.position}
-                            />
-                            
-                        ))
-                             }
-                    </Row>
-                        <Row className='justify-content-center'>{
-                        this.state.Attacker.map((member, key)=>(
-                            
-                            <PlayerCardPitchStarted 
-                               id={member.player.id}
-                               first_name={member.player.firstname}
-                               last_name={member.player.lastname}
-                               imageUrl={member.player.photo}
-                               key={key}
-                               position={member.statistics[0].games.position} 
-                            />
-                           
-                        ))
-                    }</Row>
-                    </Container>
-                </Col>
                         ):
                         (<h1>wait</h1>)
                     }
