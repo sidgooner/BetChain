@@ -9,11 +9,12 @@ class MatchStarted extends React.Component{
         super(props);
 
         this.state={
-            player_stats: null
+            player_stats: null,
+            total_points: 0
         }
     }
 
-    componentDidMount(){
+    async componentDidMount(){
         
         const requestOptions = {
             method: 'GET',
@@ -32,16 +33,15 @@ class MatchStarted extends React.Component{
 
         //   this.setState({player_stats: player_stats});
 
+        var temp = this.props.Goalkeeper[0];
 
+        temp['points'] = 50;
+
+        console.log(temp);
     }
 
 
-    calculatePoints=(playerInTeam)=>{
-
-        var Goalkeeper_pts=0, Midfielder_pts=0, Defender_pts=0, Attacker_pts=0; 
-
-
-
+    calculateGKPoints=()=>{
 
     }
 
