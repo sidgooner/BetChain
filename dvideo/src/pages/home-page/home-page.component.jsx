@@ -19,38 +19,38 @@ class HomePage extends React.Component{
         //Bind functions
       }
 
-    async componentWillMount() {
-        await this.loadWeb3()
-        await this.loadBlockchainData()
-      }
+    // async componentWillMount() {
+    //     await this.loadWeb3()
+    //     await this.loadBlockchainData()
+    //   }
     
-      async loadWeb3() {
-        if (window.ethereum) {
-          window.web3 = new Web3(window.ethereum)
-          await window.ethereum.enable()
-        }
-        else if (window.web3) {
-          window.web3 = new Web3(window.web3.currentProvider)
-        }
-        else {
-          window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
-        }
-      }
+    //   async loadWeb3() {
+    //     if (window.ethereum) {
+    //       window.web3 = new Web3(window.ethereum)
+    //       await window.ethereum.enable()
+    //     }
+    //     else if (window.web3) {
+    //       window.web3 = new Web3(window.web3.currentProvider)
+    //     }
+    //     else {
+    //       window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+    //     }
+    //   }
 
-      async loadBlockchainData() {
-        const web3 = window.web3
-        //Load accounts
-        //Add first account the the state 
-        const accounts = await web3.eth.getAccounts();
-        console.log(accounts);
-        this.setState({account: accounts[0]});
-        //Get network ID
-        //Get network data
+    //   async loadBlockchainData() {
+    //     const web3 = window.web3
+    //     //Load accounts
+    //     //Add first account the the state 
+    //     const accounts = await web3.eth.getAccounts();
+    //     console.log(accounts);
+    //     this.setState({account: accounts[0]});
+    //     //Get network ID
+    //     //Get network data
        
 
 
           
-      }
+    //   }
     
     
     
@@ -62,15 +62,27 @@ class HomePage extends React.Component{
       console.log("user set");
     }
     return( 
+
+      
         <div>
-    
+          <div id='head'>
+<h1 className='heading'>Welcome to BetChain !</h1>
+</div>
     <div id="landing-header">
+      {/* { <Container>
+      <h1 className='heading'>Welcome to BetChain !</h1>
+      </Container> } */}
+
       <Container>
-      <h1 className='welcome'>Welcome to BetChain !</h1>
+      <h3 className='maintext'>Introducing the first blockchain based fantasy league  </h3>
+      <h3 className='maintext'>create your own team battle against others </h3>
+      <h3 className='maintext'>and keep winning </h3>
+      <h3 className='maintext'>make your team now!!!!! </h3>
       </Container>
  		
 		<a href="/campgrounds" class="btn btn-lg btn-success">Choose Your Battles!!</a>
     </div>
+    
     
     <ul class="slideshow">
       <li></li>

@@ -39,10 +39,10 @@ Your can have different combinations of players but must qualify the following t
 </table>
 <h2>Captain and Vice-captain points</h2>
 
-<h3>Once you have selected your 11 players, you will have to assign a captain and vice-captain for your team.</h3>
-<h3>The captain will give you 2x points scored by them in the actual match.</h3>
-<h3>The vice-captain will give you 1.5x points scored by them in the actual match.</h3>
-<h3>For more details check fantasy points system</h3>
+<p>Once you have selected your 11 players, you will have to assign a captain and vice-captain for your team.
+The captain will give you 2x points scored by them in the actual match.
+The vice-captain will give you 1.5x points scored by them in the actual match.
+For more details check fantasy points system</p>
         </div>
     )
 }

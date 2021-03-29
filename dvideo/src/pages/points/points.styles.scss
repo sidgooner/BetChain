@@ -1,0 +1,91 @@
+h1 {
+    color: black;
+    text-align: center;
+    padding-bottom:50px;
+  }
+  
+  h2{
+      color: black;
+      padding-bottom:25px;
+      }
+  
+  #attacktable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #attacktable td, #attacktable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #attacktable tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #attacktable tr:hover {background-color: #ddd;}
+  
+  #attacktable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
+  }
+  
+  
+  #defencetable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #defencetable td, #defencetable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #defencetable tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #defencetable tr:hover {background-color: #ddd;}
+  
+  #defencetable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
+  }
+  
+  #othertable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #othertable td, #othertable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #othertable tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #othertable tr:hover {background-color: #ddd;}
+  
+  #othertable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
+  }
+
+  .mainDiv{
+      background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.3LWga6rdoS644kktIJ0z4wHaDi%26pid%3DApi&f=1) !important;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-blend-mode: lighten;
+  
+  
+  
+    }

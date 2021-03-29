@@ -63,6 +63,7 @@ class PlayerDetails extends React.Component{
     <th>yellow-card</th>
     <th>goals-saved</th>
     <th>goals-scored</th>
+    <th>assists</th>
   </tr>
   <tr>
     <td>{this.state.player.statistics[0].games.position}</td>
@@ -71,6 +72,7 @@ class PlayerDetails extends React.Component{
     <td>{this.state.player.statistics[0].cards.yellow}</td>
     <td>{this.state.player.statistics[0].goals.saves}</td>
     <td>{this.state.player.statistics[0].goals.conceded}</td>
+    <td>{this.state.player.statistics[0].goals.assists}</td>
 </tr>
 </table>
 <h4>league cup</h4>
@@ -83,6 +85,7 @@ class PlayerDetails extends React.Component{
     <th>yellow-card</th>
     <th>goals-saved</th>
     <th>goals-scored</th>
+    <th>assists</th>
   </tr>
   <tr>
     <td>{this.state.player.statistics[1].games.position}</td>
@@ -91,6 +94,7 @@ class PlayerDetails extends React.Component{
     <td>{this.state.player.statistics[1].cards.yellow}</td>
     <td>{this.state.player.statistics[1].goals.saves}</td>
     <td>{this.state.player.statistics[1].goals.conceded}</td>
+    <td>{this.state.player.statistics[1].goals.assists}</td>
 </tr>
 </table>
 
@@ -104,6 +108,7 @@ class PlayerDetails extends React.Component{
     <th>yellow-card</th>
     <th>goals-saved</th>
     <th>goals-scored</th>
+    <th>assists</th>
   </tr>
   <tr>
     <td>{this.state.player.statistics[2].games.position}</td>
@@ -112,6 +117,7 @@ class PlayerDetails extends React.Component{
     <td>{this.state.player.statistics[2].cards.yellow}</td>
     <td>{this.state.player.statistics[2].goals.saves}</td>
     <td>{this.state.player.statistics[2].goals.conceded}</td>
+    <td>{this.state.player.statistics[2].goals.assists}</td>
 </tr>
 </table>
 

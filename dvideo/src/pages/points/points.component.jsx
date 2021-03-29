@@ -3,7 +3,8 @@ import './points.styles.scss'
 
 const Points=()=>{
     return(
-        <div>
+        <div className="mainDiv">
+          
 
 <h1>Fantasy points system</h1>
 <h2>Attack points</h2>
