@@ -1,19 +1,29 @@
 import React from 'react';
 import './contest-tile.styles.scss'
+import {Card, Row, Col, Button}  from 'react-bootstrap'
 const ContestTile = (props) => {
     return (
-        <div className="contest-tile">
-            <div className="home">
-                <img src={props.home_logo} />
-                <h3>{props.home_name}</h3>
-            </div>
-            <img className="vs-logo" src="https://thumbs.dreamstime.com/b/vs-versus-icon-isolated-confrontation-symbol-game-concept-letter-sign-choise-vs-versus-icon-isolated-confrontation-symbol-166196291.jpg" />
-            <div className="away">
-                <img src={props.away_logo} />
-                <h3>{props.away_name}</h3>
-            </div>
-        </div>
+        <Card className='contest-card' style={{ width: '65rem' }}>
+        <Row >
+        <Col   >
+        <Card.Img variant="top" className='home' src={props.home_logo} />
+        <Card.Text className='home-name'>{props.home_name}</Card.Text>
+        </Col>
+        <Col >
+        
+          <Card.Img variant='top' className="vs-logo" src="data:image/jpeg;base64,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"/>
+
+          </Col>
+        <Col   >
+        <Card.Img variant="top" className='away' src={props.away_logo} />
+        <Card.Text className='away-name'>{props.away_name}</Card.Text>
+        </Col>
+        
+        </Row>
+      </Card>
     );
 }
 
 export default ContestTile;
+
+

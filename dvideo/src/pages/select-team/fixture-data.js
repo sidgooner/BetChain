@@ -17,7 +17,7 @@ export const FIXTURE_DATA=[
             },
             "status": {
                 "long": "Match Finished",
-                "short": "FT",
+                "short": "T",
                 "elapsed": 90
             }
         },

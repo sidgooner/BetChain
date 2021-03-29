@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Betting from '../abis/Betting.json'
-import Navbar from './Navbar'
-import Main from './Main'
+
 import Web3 from 'web3';
 import './App.css';
 import TeamCard from './team-card/team-card.component';
@@ -14,7 +13,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import PlayerDetails from '../pages/player-details/player-details.component';
 import RulesPage from '../pages/rules/rules.component';
 import Points from '../pages/points/points.component';
-
+import Navbar1 from './navbar/navbar.component';
 
 class App extends Component {
 
@@ -25,7 +24,10 @@ class App extends Component {
 
   render(){
     return (
+      
       <div>
+       
+        
         <Route exact path='/' component={HomePage}/>
         <Route exact path="/payment" component={PaymentPage}/>
         <Route exact path="/contests" component={ContestPage}/>
@@ -33,7 +35,7 @@ class App extends Component {
         <Route  path="/rules" component={RulesPage}/>
         <Route  path="/points" component={Points}/>
         <Route path='/player-detail/:playerId' component={PlayerDetails}></Route>
-        
+      
       </div>
     )
   }

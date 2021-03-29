@@ -3,6 +3,7 @@ import ContestTile from '../../components/contest-tile/contest-tile.component';
 import './contest-page.styles.scss'
 import { Link } from 'react-router-dom'
 import { CONTEST_DATA } from './contest-data';
+import {Card, Row, Col, Button, Container, Carousel}  from 'react-bootstrap'
 
 class ContestPage extends React.Component {
     constructor(props) {
@@ -50,9 +51,48 @@ class ContestPage extends React.Component {
         return (
             // <h1>hi</h1>
             this.state.fixture_data ? (
-                <div className="tiles">
-                    <h1 className="heading">Bet-Chain</h1>
-                    <img className="advertisement" src="https://www.webcodebuddy.com/wp-content/uploads/2018/11/advertising-ideas.jpeg" ></img>
+                <div>    <h1 className="heading">Bet-Chain</h1>
+                <Container className="tiles">
+                    <Row>
+                    <Carousel>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src="https://www.quantumcloud.com/wp/slider-hero/intro-offer.jpg"
+                            alt="First slide"
+                            />
+                            <Carousel.Caption>
+                            <h3>First slide label</h3>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src="https://i.pinimg.com/originals/ab/23/e6/ab23e6d7aad70ebe6d3009a14674aba4.png"
+                            alt="Second slide"
+                            />
+
+                            <Carousel.Caption>
+                            <h3>Second slide label</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src="https://i.pinimg.com/originals/ab/23/e6/ab23e6d7aad70ebe6d3009a14674aba4.png"
+                            alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                            <h3>Third slide label</h3>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        </Carousel>
+                    </Row>
+                    <Row>
                     {
                         this.state.fixture_data.map((card_data, key) =>
                         (
@@ -66,7 +106,8 @@ class ContestPage extends React.Component {
                         )
                         )
                     }
-                </div>) : (<h1>wait</h1>)
+                    </Row>
+                </Container></div>) : (<h1>wait</h1>)
         )
     }
 }

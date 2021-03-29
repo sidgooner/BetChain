@@ -1,9 +1,10 @@
 import React from 'react'
 import './points.styles.scss'
+import {Container} from 'react-bootstrap'
 
 const Points=()=>{
     return(
-        <div className="mainDiv">
+        <Container className="mainDiv">
           
 
 <h1>Fantasy points system</h1>
@@ -93,7 +94,7 @@ const Points=()=>{
     <td>+2</td>
   </tr>
 </table>
-        </div>
+        </Container>
 
     )
     }

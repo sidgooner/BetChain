@@ -1,6 +1,6 @@
 import React from 'react'
 import Betting from '../../abis/Betting.json'
-import Navbar from '../../components/Navbar'
+
 
 import Web3 from 'web3'
 import ContestPage from '../contest-page/contest-page.component'
@@ -103,8 +103,8 @@ class PaymentPage extends React.Component{
       render() {
         return (
           <div className="page">
-            <Navbar 
-              account={this.state.account}/>
+            
+              
             <div className="grid-container">
               <div className="team">
                 <TeamCard teamName = "India" 
