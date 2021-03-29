@@ -1,7 +1,7 @@
 import React from 'react'
 import './home-page.styles.scss'
 import Web3 from 'web3'
-
+import {Container, Row, Col} from 'react-bootstrap'
 
 
 
@@ -63,8 +63,22 @@ class HomePage extends React.Component{
     }
     return( 
         <div>
-            <h1>HomePage {this.state.account}</h1>
-            <button className="btn">hello</button>
+    
+    <div id="landing-header">
+      <Container>
+      <h1 className='welcome'>Welcome to BetChain !</h1>
+      </Container>
+ 		
+		<a href="/campgrounds" class="btn btn-lg btn-success">Choose Your Battles!!</a>
+    </div>
+    
+    <ul class="slideshow">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
         </div>)}
 }
 
