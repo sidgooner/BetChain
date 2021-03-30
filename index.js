@@ -52,6 +52,17 @@ app.get('/api/select-team/:teamid/:matchId', async(req, res)=>{
 
 app.post('/api/select-team', async(req, res)=>{
   //console.log(req.body);
+
+  const user = await User.findOne({user_name: req.body.user_name, matchId: req.body.matchId});
+
+  console.log(user.id)
+
+
+  if(user)
+  await User.deleteOne({_id: user._id},()=>{
+    console.log('user removed');
+  });
+
   User.create({
     user_name: req.body.user_name,
     Goalkeeper: req.body.Goalkeeper,
