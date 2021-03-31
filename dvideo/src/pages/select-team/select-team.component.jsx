@@ -468,6 +468,8 @@ class SelectTeamPage extends React.Component{
                             Midfielder={this.state.Midfielder}
                             Attacker={this.state.Attacker}
                             matchId={this.props.match.params.matchId}
+                            captain = {this.state.captain}
+                            vice_captain={this.state.vice_captain}
                             ></MatchStarted>
                             
                         ):
