@@ -55,7 +55,7 @@ app.post('/api/select-team', async(req, res)=>{
 
   const user = await User.findOne({user_name: req.body.user_name, matchId: req.body.matchId});
 
-  console.log(user.id)
+ // console.log(user.id)
 
 
   if(user)
@@ -79,6 +79,7 @@ app.post('/api/select-team', async(req, res)=>{
     }
     else{
       console.log('success');
+      res.send('ok');
     }
   })
 })

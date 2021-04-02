@@ -29,7 +29,7 @@ class App extends Component {
        
         
         <Route exact path='/' component={HomePage}/>
-        <Route exact path="/payment" component={PaymentPage}/>
+        <Route exact path="/payment/:id" component={PaymentPage}/>
         <Route exact path="/contests" component={ContestPage}/>
         <Route  path="/select-team/:matchId/:homeId/:awayId" component={SelectTeamPage}/>
         <Route  path="/rules" component={RulesPage}/>

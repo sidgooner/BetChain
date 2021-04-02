@@ -1,6 +1,6 @@
 import React from 'react'
 import Betting from '../../abis/Betting.json'
-
+import {Container, Row, Col, Card, Button, Form} from 'react-bootstrap'
 
 import Web3 from 'web3'
 import ContestPage from '../contest-page/contest-page.component'
@@ -52,32 +52,32 @@ class PaymentPage extends React.Component{
           
       }
     
-        getTeam1Amount=async()=>{
-          const team1Amount =await this.state.betting.methods.AmountOne().call({from: this.state.account});
-          const team1AmountNum = team1Amount.toNumber()/1000000000000000000;
-          window.alert("The amount is " + team1AmountNum );
-          }
+        // getTeam1Amount=async()=>{
+        //   const team1Amount =await this.state.betting.methods.AmountOne().call({from: this.state.account});
+        //   const team1AmountNum = team1Amount.toNumber()/1000000000000000000;
+        //   window.alert("The amount is " + team1AmountNum );
+        //   }
     
-        getTeam2Amount=async()=>{
-          const team2Amount =await this.state.betting.methods.AmountTwo().call();
-          const team2AmountNum = team2Amount.toNumber();
-          window.alert("The amount is " + team2AmountNum );
-          } 
+        // getTeam2Amount=async()=>{
+        //   const team2Amount =await this.state.betting.methods.AmountTwo().call();
+        //   const team2AmountNum = team2Amount.toNumber();
+        //   window.alert("The amount is " + team2AmountNum );
+        //   } 
           
         betOnTeam=async(team, amount)=>{
             amount = amount*1000000000000000000;
-            await this.state.betting.methods.doBet(team).send({from: this.state.account, value: amount});
+            await this.state.betting.methods.doBet().send({from: localStorage.getItem('user'), value: amount});
             window.alert("Your bet is placed");
         }    
         
         decideWinner=async()=>{
-          await this.state.betting.methods.chooseWinner(1).send({from: this.state.account});
+          await this.state.betting.methods.chooseWinner(localStorage.getItem('user')).send({from: this.state.account});
           window.alert("winner set");
         }
-        distribute=async(event)=>{
-          event.preventDefault();
+        distribute=async()=>{
+          
           // console.log(event);
-          await this.state.betting.methods.distribute(this.state.winner).send({from: this.state.account});
+          await this.state.betting.methods.distribute(localStorage.getItem('user')).send({from: localStorage.getItem('user')});
           window.alert("ok");
         }
     
@@ -105,7 +105,7 @@ class PaymentPage extends React.Component{
           <div className="page">
             
               
-            <div className="grid-container">
+            {/* {<div className="grid-container">
               <div className="team">
                 <TeamCard teamName = "India" 
                 teamid={1}
@@ -129,8 +129,16 @@ class PaymentPage extends React.Component{
               <input placeholder="enter winner" name="winner" onChange={this.handleChange} type="number"></input>  
               <button type="submit">Distribute</button>
               </form>
-            </div>
-            <ContestPage/>
+            </div>} */}
+            <Container>
+              <Row>
+                <h3>5 eth Contest</h3>
+                <p>Your accout will be debited with 5 eth</p>
+                <Button variant='success' onClick={() => { this.betOnTeam(localStorage.getItem('user'), 5) }}>bet</Button>
+                <Button variant='success' onClick={() => { this.distribute() }}>ditribute</Button>
+              </Row>
+            </Container>
+            
           </div>
         );
       }

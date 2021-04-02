@@ -10,7 +10,14 @@ class MatchStarted extends React.Component {
 
         this.state = {
             player_stats: null,
-            total_points: 0
+            total_points: 0,
+            opp_Gk:[],
+            opp_Def:[],
+            opp_Mid: [],
+            opp_Att: [],
+            opp_points: 0,
+            opp_captain: 0,
+            opp_vice_captain: 0
         }
     }
 
