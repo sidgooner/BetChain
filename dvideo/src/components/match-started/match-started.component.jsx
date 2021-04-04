@@ -51,6 +51,17 @@ class MatchStarted extends React.Component {
         // console.log('response');
         // console.log(PLAYER_STATS.response);
 
+        console.log("opponent_data")
+        fetch(`http://localhost:1337/api/get-opponent/${this.props.matchId}/${localStorage.getItem('user')}`)
+            .then((response)=>response.json())
+            .then((data)=>{
+                console.log(data);
+            }) ;
+
+        
+
+        //this.setState({opp_Gk: opponent_data})
+
         // // updating player arrays with points
 
         var Goalkeeper_new = this.calculateGKPoints(this.props.Goalkeeper);
@@ -619,8 +630,8 @@ class MatchStarted extends React.Component {
                         }
 
                         //console.log(this.props.vice_captain)
-                        console.log(this.state.player_stats[j].players[i].player.name);
-                        console.log(AttPoints);
+                      //  console.log(this.state.player_stats[j].players[i].player.name);
+                        //console.log(AttPoints);
                         Attacker[k]['points'] = AttPoints;
                     }
 

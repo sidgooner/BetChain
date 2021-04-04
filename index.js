@@ -38,14 +38,14 @@ app.get('/api/select-team/:teamid/:matchId', async(req, res)=>{
   
   const user = await User.findOne({user_name: req.params.teamid, matchId: req.params.matchId});
 
-  console.log(req.params.id);
+  //console.log(req.params.id);
   
     if(!user)
     {
         res.send(null);
     }
 
-    console.log(user);
+   // console.log(user);
     res.send(user); 
     
 
@@ -90,11 +90,23 @@ app.get('/api/bet' ,async(req, res)=>{
 
   const contest = await Contest.find();
 
-  console.log(contest);
+ // console.log(contest);
 
   if(contest) res.send(contest);
 
   else res.send(null);
+
+})
+
+app.get('/api/get-opponent/:matchId/:user_name', async(req, res)=>{
+
+  const user = await User.findOne({user_name: {$ne: req.params.user_name}, matchId: req.params.matchId});
+
+ // opponent = opponent.json();
+
+  console.log( user);
+
+  res.send(user);
 
 })
 
