@@ -1,15 +1,12 @@
 const mongoose = require('mongoose');
 
 var ContestSchema = new mongoose.Schema({
-    user_name: String,
-    Goalkeeper:[],
-    Defender:[],
-    Midfielder:[],
-    Attacker:[],
-    captain: Number,
-    viceCaptain: Number,
-    matchId: Number
+   matchId: String,
+   user1: String,
+   user2: String,
+   user1_pts: Number,
+   user2_pts: Number
     
 });
 
-module.exports = mongoose.model("User", ContestSchema);
+module.exports = mongoose.model("Contest", ContestSchema);

@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema({
     Attacker:[],
     captain: Number,
     viceCaptain: Number,
-    matchId: Number
+    matchId: Number,
     
 });
 

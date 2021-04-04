@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 var User = require('./models/user');
+const Contest = require('./models/contest');
 const app = express();
 
 require("dotenv").config();
@@ -84,5 +85,46 @@ app.post('/api/select-team', async(req, res)=>{
   })
 })
 
+app.get('/api/bet' ,async(req, res)=>{
+
+
+  const contest = await Contest.find();
+
+  console.log(contest);
+
+  if(contest) res.send(contest);
+
+  else res.send(null);
+
+})
+
+app.post('/api/bet', async(req, res)=>{
+  
+  const contest = await Contest.findOne({ matchId: req.body.matchId});
+
+ // console.log("here");
+
+  if(contest)
+  {
+   await Contest.updateOne({ matchId: req.body.matchId }, {user2: req.body.user_name});
+   console.log("updated");
+  }
+  else{
+   await Contest.create({
+      matchId: req.body.matchId,
+      user1: req.body.user_name
+    }, (err, newlyCreated)=>{
+      if(err)
+      {
+        console.log(err);
+      }
+      else{
+        console.log('match created');
+        res.send('ok');
+      }
+    })
+  }
+
+})
 
 app.listen(1337,()=>{console.log("Listening");});

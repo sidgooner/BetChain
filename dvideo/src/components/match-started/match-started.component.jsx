@@ -11,8 +11,8 @@ class MatchStarted extends React.Component {
         this.state = {
             player_stats: null,
             total_points: 0,
-            opp_Gk:[],
-            opp_Def:[],
+            opp_Gk: [],
+            opp_Def: [],
             opp_Mid: [],
             opp_Att: [],
             opp_points: 0,
@@ -48,16 +48,31 @@ class MatchStarted extends React.Component {
         await this.setState({ player_stats: PLAYER_STATS.response });
 
 
-        console.log('response');
-        console.log(PLAYER_STATS.response);
+        // console.log('response');
+        // console.log(PLAYER_STATS.response);
 
-        this.calculateGKPoints(this.props.Goalkeeper);
+        // // updating player arrays with points
 
-        this.calculateDefPoints(this.props.Defender);
+        var Goalkeeper_new = this.calculateGKPoints(this.props.Goalkeeper);
 
-        this.calculateMidPoints(this.props.Midfielder);
+        console.log(Goalkeeper_new);
 
-        this.calculateAttPoints(this.props.Attacker);
+        var Defender_new = this.calculateDefPoints(this.props.Defender);
+        console.log("Defender_new");
+        console.log(Defender_new);
+
+
+        var Midfielder_new = this.calculateMidPoints(this.props.Midfielder);
+        console.log("Midfielder_new");
+        console.log(Midfielder_new);
+
+        var Attacker_new = this.calculateAttPoints(this.props.Attacker);
+        console.log("Attacker_new");
+        console.log(Attacker_new);
+
+
+        
+
     }
 
 
@@ -224,6 +239,9 @@ class MatchStarted extends React.Component {
 
             }
         }
+
+        Goalkeeper[0]['points'] = GkPoints;
+        return Goalkeeper;
         // console.log("gk pts");
         // console.log(GkPoints);   
     }
@@ -414,7 +432,10 @@ class MatchStarted extends React.Component {
 
             // console.log("def pts");
             // console.log(DefPoints);
+            Defender[k]['points'] = DefPoints;
         }
+
+        return Defender;
 
     }
 
@@ -496,23 +517,27 @@ class MatchStarted extends React.Component {
                         }
                         if (this.state.player_stats[j].players[i].player.id === this.props.vice_captain) {
                             MidPoints *= 1.5;
-                            
+
                         }
 
                         //console.log(this.props.vice_captain)
                         // console.log(this.state.player_stats[j].players[i].player.name);
                         // console.log(MidPoints);
+                        Midfielder[k]['points'] = MidPoints;
                     }
 
 
                 }
 
+
             }
 
         }
+
+        return Midfielder;
     }
 
-    calculateAttPoints=(Attacker)=>{
+    calculateAttPoints = (Attacker) => {
         for (let j = 0; j < 2; j++) {
             for (let k = 0; k < Attacker.length; k++) {
                 var AttPoints = 0;
@@ -586,28 +611,32 @@ class MatchStarted extends React.Component {
 
                         if (this.state.player_stats[j].players[i].player.id === this.props.captain) {
                             AttPoints *= 2;
-                            
+
                         }
                         if (this.state.player_stats[j].players[i].player.id === this.props.vice_captain) {
                             AttPoints *= 1.5;
-                            
+
                         }
 
                         //console.log(this.props.vice_captain)
                         console.log(this.state.player_stats[j].players[i].player.name);
                         console.log(AttPoints);
+                        Attacker[k]['points'] = AttPoints;
                     }
 
 
                 }
 
+
             }
 
         }
+
+        return Attacker;
     }
 
     render() {
-        console.log(this.state.player_stats);
+        console.log(this.state);
         return (
             <Col className='pitch-started'>
                 <Container>
