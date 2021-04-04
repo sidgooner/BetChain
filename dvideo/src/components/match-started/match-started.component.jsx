@@ -17,7 +17,8 @@ class MatchStarted extends React.Component {
             opp_Att: [],
             opp_points: 0,
             opp_captain: 0,
-            opp_vice_captain: 0
+            opp_vice_captain: 0, 
+            opp_user_name: null
         }
     }
 
@@ -52,13 +53,16 @@ class MatchStarted extends React.Component {
         // console.log(PLAYER_STATS.response);
 
         console.log("opponent_data")
-        fetch(`http://localhost:1337/api/get-opponent/${this.props.matchId}/${localStorage.getItem('user')}`)
+       await fetch(`http://localhost:1337/api/get-opponent/${this.props.matchId}/${localStorage.getItem('user')}`)
             .then((response)=>response.json())
             .then((data)=>{
-                console.log(data);
-            }) ;
+                this.setState({opp_Gk: data.Goalkeeper, opp_Mid: data.Midfielder, opp_Def: data.Defender, opp_Att: data.Attacker, opp_user_name: data.user_name});
+
+            }).then(()=>console.log(this.state)) ;
 
         
+
+
 
         //this.setState({opp_Gk: opponent_data})
 
@@ -66,23 +70,64 @@ class MatchStarted extends React.Component {
 
         var Goalkeeper_new = this.calculateGKPoints(this.props.Goalkeeper);
 
-        console.log(Goalkeeper_new);
+        //console.log(Goalkeeper_new);
 
         var Defender_new = this.calculateDefPoints(this.props.Defender);
-        console.log("Defender_new");
-        console.log(Defender_new);
+        // console.log("Defender_new");
+        // console.log(Defender_new);
 
 
         var Midfielder_new = this.calculateMidPoints(this.props.Midfielder);
-        console.log("Midfielder_new");
-        console.log(Midfielder_new);
+        // console.log("Midfielder_new");
+        // console.log(Midfielder_new);
 
         var Attacker_new = this.calculateAttPoints(this.props.Attacker);
-        console.log("Attacker_new");
-        console.log(Attacker_new);
+        // console.log("Attacker_new");
+        // console.log(Attacker_new);
 
+      await fetch(`http://localhost:1337/api/update-pts/${localStorage.getItem('user')}/${this.props.matchId}`, {
+            method: 'post',
 
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+
+                Goalkeeper_new, Defender_new, Midfielder_new, Attacker_new
+            })
+        }).then(() => {
+            //console.log(this.props.Goalkeeper);
+        });
         
+        var Goalkeeper_new_opponent = this.calculateGKPoints(this.state.opp_Gk);
+       // console.log(Goalkeeper_new_opponent);
+
+        var Defender_new_opponent = this.calculateDefPoints(this.state.opp_Def);
+        //  console.log("Defender_new_oppon");
+        //  console.log(Defender_new_opponent);
+
+
+        var Midfielder_new_opponent = this.calculateMidPoints(this.state.opp_Mid);
+        // console.log("Midfielder_new");
+        // console.log(Midfielder_new_opponent);
+
+        var Attacker_new_opponent = this.calculateAttPoints(this.state.opp_Att);
+        // console.log("Attacker_new");
+        // console.log(Attacker_new_opponent);
+    
+        await fetch(`http://localhost:1337/api/update-pts/${this.state.opp_user_name}/${this.props.matchId}`, {
+            method: 'post',
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+
+                Goalkeeper_new_opponent, Defender_new_opponent, Midfielder_new_opponent, Attacker_new_opponent
+            })
+        }).then(() => {
+           // console.log(this.state.opp_Gk);
+        });
 
     }
 
@@ -630,8 +675,8 @@ class MatchStarted extends React.Component {
                         }
 
                         //console.log(this.props.vice_captain)
-                      //  console.log(this.state.player_stats[j].players[i].player.name);
-                        //console.log(AttPoints);
+                    //    console.log(this.state.player_stats[j].players[i].player.name);
+                    //     console.log(AttPoints);
                         Attacker[k]['points'] = AttPoints;
                     }
 
@@ -647,6 +692,8 @@ class MatchStarted extends React.Component {
     }
 
     render() {
+       
+
         console.log(this.state);
         return (
             <Col className='pitch-started'>

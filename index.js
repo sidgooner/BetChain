@@ -98,13 +98,28 @@ app.get('/api/bet' ,async(req, res)=>{
 
 })
 
+app.post('/api/update-pts/:user_name/:matchId', async(req, res)=>{
+  
+  //console.log(req.body.Goalkeeper_new);
+ await User.findOneAndUpdate({user_name: req.body.user_name, matchId: req.body.matchId},
+   { Goalkeeper: req.body.Goalkeeper_new,
+      Defender: req.body.Defender_new,
+      Midfielder: req.body.Midfielder_new,
+      Attacker: req.body.Attacker_new
+    });
+   // const user = await User.findOne({user_name: req.params.user_name, matchId: req.params.matchId});
+   // console.log(user.Goalkeeper);
+    res.send('ok');
+})
+
+
 app.get('/api/get-opponent/:matchId/:user_name', async(req, res)=>{
 
   const user = await User.findOne({user_name: {$ne: req.params.user_name}, matchId: req.params.matchId});
 
  // opponent = opponent.json();
 
-  console.log( user);
+ // console.log( user);
 
   res.send(user);
 
