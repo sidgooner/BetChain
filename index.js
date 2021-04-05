@@ -105,7 +105,8 @@ app.post('/api/update-pts/:user_name/:matchId', async(req, res)=>{
    { Goalkeeper: req.body.Goalkeeper_new,
       Defender: req.body.Defender_new,
       Midfielder: req.body.Midfielder_new,
-      Attacker: req.body.Attacker_new
+      Attacker: req.body.Attacker_new,
+      points: total_points
     });
    // const user = await User.findOne({user_name: req.params.user_name, matchId: req.params.matchId});
    // console.log(user.Goalkeeper);
@@ -122,7 +123,7 @@ app.get('/api/get-opponent/:matchId/:user_name', async(req, res)=>{
  // console.log( user);
 
   res.send(user);
-
+ 
 })
 
 app.post('/api/bet', async(req, res)=>{

@@ -15,6 +15,7 @@ import RulesPage from '../pages/rules/rules.component';
 import Points from '../pages/points/points.component';
 import Navbar1 from './navbar/navbar.component';
 import Admin from './admin/admin.component';
+import AdminMatch from './admin-match/admin-match.component';
 
 class App extends Component {
 
@@ -37,6 +38,7 @@ class App extends Component {
         <Route  path="/points" component={Points}/>
         <Route path='/player-detail/:playerId' component={PlayerDetails}></Route>
         <Route exact path='/admin' component={Admin}/>
+        <Route path='/admin/:mathId' component={AdminMatch} />
       
       </div>
     )

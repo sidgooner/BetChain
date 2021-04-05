@@ -9,6 +9,7 @@ var UserSchema = new mongoose.Schema({
     captain: Number,
     viceCaptain: Number,
     matchId: Number,
+    points: Number
     
 });
 

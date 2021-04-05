@@ -18,7 +18,8 @@ class MatchStarted extends React.Component {
             opp_points: 0,
             opp_captain: 0,
             opp_vice_captain: 0, 
-            opp_user_name: null
+            opp_user_name: null,
+            opp_total_points: 0
         }
     }
 
@@ -56,7 +57,7 @@ class MatchStarted extends React.Component {
        await fetch(`http://localhost:1337/api/get-opponent/${this.props.matchId}/${localStorage.getItem('user')}`)
             .then((response)=>response.json())
             .then((data)=>{
-                this.setState({opp_Gk: data.Goalkeeper, opp_Mid: data.Midfielder, opp_Def: data.Defender, opp_Att: data.Attacker, opp_user_name: data.user_name});
+                this.setState({opp_Gk: data.Goalkeeper, opp_Mid: data.Midfielder, opp_Def: data.Defender, opp_Att: data.Attacker, opp_user_name: data.user_name, opp_total_points: data.points});
 
             }).then(()=>console.log(this.state)) ;
 
@@ -84,6 +85,11 @@ class MatchStarted extends React.Component {
         var Attacker_new = this.calculateAttPoints(this.props.Attacker);
         // console.log("Attacker_new");
         // console.log(Attacker_new);
+        
+        var total_points = this.calculateTotalPoints(Goalkeeper_new) + this.calculateTotalPoints(Defender_new)+ this.calculateTotalPoints(Midfielder_new)+ this.calculateTotalPoints(Attacker_new);
+
+        // console.log("total pts")
+        // console.log(total_points);
 
       await fetch(`http://localhost:1337/api/update-pts/${localStorage.getItem('user')}/${this.props.matchId}`, {
             method: 'post',
@@ -93,7 +99,7 @@ class MatchStarted extends React.Component {
             },
             body: JSON.stringify({
 
-                Goalkeeper_new, Defender_new, Midfielder_new, Attacker_new
+                Goalkeeper_new, Defender_new, Midfielder_new, Attacker_new, total_points
             })
         }).then(() => {
             //console.log(this.props.Goalkeeper);
@@ -594,6 +600,7 @@ class MatchStarted extends React.Component {
     }
 
     calculateAttPoints = (Attacker) => {
+        
         for (let j = 0; j < 2; j++) {
             for (let k = 0; k < Attacker.length; k++) {
                 var AttPoints = 0;
@@ -689,6 +696,18 @@ class MatchStarted extends React.Component {
         }
 
         return Attacker;
+    }
+
+    calculateTotalPoints=(Players)=>{
+        
+        var total_pts_temp = 0;
+
+        for(let i=0; i<Players.length; i++)
+        {
+           total_pts_temp += Players[i].points;
+        }
+
+        return total_pts_temp;
     }
 
     render() {
