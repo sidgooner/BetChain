@@ -100,20 +100,20 @@ class AdminMatch extends React.Component {
 
     // // updating player arrays with points
 
-    var Goalkeeper_new = this.calculateGKPoints(this.state.gk1);
+    var Goalkeeper_new = this.calculateGKPoints(this.state.gk1, this.state.cap1, this.state.vcap1);
 
     //console.log(Goalkeeper_new);
 
-    var Defender_new = this.calculateDefPoints(this.state.def1);
+    var Defender_new = this.calculateDefPoints(this.state.def1, this.state.cap1, this.state.vcap1);
     // console.log("Defender_new");
     // console.log(Defender_new);
 
 
-    var Midfielder_new = this.calculateMidPoints(this.state.mid1);
+    var Midfielder_new = this.calculateMidPoints(this.state.mid1, this.state.cap1, this.state.vcap1);
     // console.log("Midfielder_new");
     // console.log(Midfielder_new);
 
-    var Attacker_new = this.calculateAttPoints(this.state.att1);
+    var Attacker_new = this.calculateAttPoints(this.state.att1, this.state.cap1, this.state.vcap1);
     // console.log("Attacker_new");
     // console.log(Attacker_new);
 
@@ -140,19 +140,19 @@ class AdminMatch extends React.Component {
 
     console.log(this.state);
 
-    var Goalkeeper_new_opponent = this.calculateGKPoints(this.state.gk2);
+    var Goalkeeper_new_opponent = this.calculateGKPoints(this.state.gk2, this.state.cap2, this.state.vcap2);
     // console.log(Goalkeeper_new_opponent);
 
-    var Defender_new_opponent = this.calculateDefPoints(this.state.def2);
+    var Defender_new_opponent = this.calculateDefPoints(this.state.def2, this.state.cap2, this.state.vcap2);
     //  console.log("Defender_new_oppon");
     //  console.log(Defender_new_opponent);
 
 
-    var Midfielder_new_opponent = this.calculateMidPoints(this.state.mid2);
+    var Midfielder_new_opponent = this.calculateMidPoints(this.state.mid2, this.state.cap2, this.state.vcap2);
     // console.log("Midfielder_new");
     // console.log(Midfielder_new_opponent);
 
-    var Attacker_new_opponent = this.calculateAttPoints(this.state.att2);
+    var Attacker_new_opponent = this.calculateAttPoints(this.state.att2, this.state.cap2, this.state.vcap2);
     // console.log("Attacker_new");
     // console.log(Attacker_new_opponent);
 
@@ -218,7 +218,7 @@ class AdminMatch extends React.Component {
   }
 
 
-  calculateGKPoints = (Goalkeeper) => {
+  calculateGKPoints = (Goalkeeper, Captain, Vice_Captain) => {
 
     // check in team 1 of response
 
@@ -292,10 +292,10 @@ class AdminMatch extends React.Component {
           GkPoints -= this.state.player_stats[0].players[i].statistics[0].penalty.missed * 20;
         }
 
-        if (this.state.player_stats[0].players[i].player.id === this.props.captain) {
+        if (this.state.player_stats[0].players[i].player.id === Captain) {
           GkPoints *= 2;
         }
-        if (this.state.player_stats[0].players[i].player.id === this.props.vice_captain) {
+        if (this.state.player_stats[0].players[i].player.id === Vice_Captain) {
           GkPoints *= 1.5;
         }
 
@@ -371,10 +371,10 @@ class AdminMatch extends React.Component {
           GkPoints -= this.state.player_stats[1].players[i].statistics[0].penalty.missed * 20;
         }
 
-        if (this.state.player_stats[1].players[i].player.id === this.props.captain) {
+        if (this.state.player_stats[1].players[i].player.id === Captain) {
           GkPoints *= 2;
         }
-        if (this.state.player_stats[1].players[i].player.id === this.props.vice_captain) {
+        if (this.state.player_stats[1].players[i].player.id === Vice_Captain) {
           GkPoints *= 1.5;
         }
 
@@ -388,7 +388,7 @@ class AdminMatch extends React.Component {
     // console.log(GkPoints);   
   }
 
-  calculateDefPoints = (Defender) => {
+  calculateDefPoints = (Defender, Captain, Vice_Captain) => {
 
     for (let k = 0; k < Defender.length; k++) {
       var DefPoints = 0;
@@ -456,10 +456,10 @@ class AdminMatch extends React.Component {
             DefPoints -= this.state.player_stats[0].players[i].statistics[0].penalty.missed * 20;
           }
 
-          if (this.state.player_stats[0].players[i].player.id === this.props.captain) {
+          if (this.state.player_stats[0].players[i].player.id === Captain) {
             DefPoints *= 2;
           }
-          if (this.state.player_stats[0].players[i].player.id === this.props.vice_captain) {
+          if (this.state.player_stats[0].players[i].player.id === Vice_Captain) {
             DefPoints *= 1.5;
           }
 
@@ -557,12 +557,12 @@ class AdminMatch extends React.Component {
             // console.log("pen miss")
           }
 
-          if (this.state.player_stats[1].players[i].player.id === this.props.captain) {
+          if (this.state.player_stats[1].players[i].player.id === Captain) {
             DefPoints *= 2;
             // console.log(DefPoints)
             // console.log("capt")
           }
-          if (this.state.player_stats[1].players[i].player.id === this.props.vice_captain) {
+          if (this.state.player_stats[1].players[i].player.id === Vice_Captain) {
             DefPoints *= 1.5;
             // console.log(DefPoints)
             // console.log("vc")
@@ -581,7 +581,7 @@ class AdminMatch extends React.Component {
 
   }
 
-  calculateMidPoints = (Midfielder) => {
+  calculateMidPoints = (Midfielder, Captain, Vice_Captain) => {
 
     for (let j = 0; j < 2; j++) {
       for (let k = 0; k < Midfielder.length; k++) {
@@ -654,10 +654,10 @@ class AdminMatch extends React.Component {
               MidPoints -= this.state.player_stats[j].players[i].statistics[0].penalty.missed * 20;
             }
 
-            if (this.state.player_stats[j].players[i].player.id === this.props.captain) {
+            if (this.state.player_stats[j].players[i].player.id === Captain) {
               MidPoints *= 2;
             }
-            if (this.state.player_stats[j].players[i].player.id === this.props.vice_captain) {
+            if (this.state.player_stats[j].players[i].player.id === Vice_Captain) {
               MidPoints *= 1.5;
 
             }
@@ -679,7 +679,7 @@ class AdminMatch extends React.Component {
     return Midfielder;
   }
 
-  calculateAttPoints = (Attacker) => {
+  calculateAttPoints = (Attacker, Captain, Vice_Captain) => {
 
     for (let j = 0; j < 2; j++) {
       for (let k = 0; k < Attacker.length; k++) {
@@ -752,11 +752,11 @@ class AdminMatch extends React.Component {
               AttPoints -= this.state.player_stats[j].players[i].statistics[0].penalty.missed * 20;
             }
 
-            if (this.state.player_stats[j].players[i].player.id === this.props.captain) {
+            if (this.state.player_stats[j].players[i].player.id === Captain) {
               AttPoints *= 2;
 
             }
-            if (this.state.player_stats[j].players[i].player.id === this.props.vice_captain) {
+            if (this.state.player_stats[j].players[i].player.id === Vice_Captain) {
               AttPoints *= 1.5;
 
             }

@@ -39,15 +39,17 @@
   }
   .player-position-pitch-started.card-text{
     font-size: small;
+    font-weight: bold;
     overflow: hidden;
   }
   .player-name-pitch-started{  
-    font-size:0.6em;
+    
     transition:1s;
     color:black;
     font-size: small;
     overflow: hidden;
     cursor:pointer;
+    
     
   }
   .player-position-pitch-started{

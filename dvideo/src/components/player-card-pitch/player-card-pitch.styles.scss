@@ -18,16 +18,17 @@
     transition:0.5s;
     cursor:pointer;
     overflow: hidden;
+    background-color: #85e085;
   }
-  .player-name-pitch{  
-    font-size:0.6em;
-    transition:1s;
+  .player-name-pitch.card-text{  
     
-    cursor:pointer;
-    
+    font-size: small;
+    overflow: hidden;
   }
   .player-position-pitch{
-    font-size: 8px;
+    font-size: small;
+    
+
   }
   .player-body.card-body{
       padding-top: 0rem;

@@ -72,20 +72,20 @@ class MatchStarted extends React.Component {
 
         // // updating player arrays with points
 
-        var Goalkeeper_new = this.calculateGKPoints(this.props.Goalkeeper);
+        var Goalkeeper_new = this.calculateGKPoints(this.props.Goalkeeper, this.props.captain, this.props.vice_captain);
 
         //console.log(Goalkeeper_new);
 
-        var Defender_new = this.calculateDefPoints(this.props.Defender);
+        var Defender_new = this.calculateDefPoints(this.props.Defender, this.props.captain, this.props.vice_captain);
         // console.log("Defender_new");
         // console.log(Defender_new);
 
 
-        var Midfielder_new = this.calculateMidPoints(this.props.Midfielder);
+        var Midfielder_new = this.calculateMidPoints(this.props.Midfielder, this.props.captain, this.props.vice_captain);
         // console.log("Midfielder_new");
         // console.log(Midfielder_new);
 
-        var Attacker_new = this.calculateAttPoints(this.props.Attacker);
+        var Attacker_new = this.calculateAttPoints(this.props.Attacker, this.props.captain, this.props.vice_captain);
         // console.log("Attacker_new");
         // console.log(Attacker_new);
 
@@ -98,19 +98,19 @@ class MatchStarted extends React.Component {
 
 
 
-        var Goalkeeper_new_opponent = this.calculateGKPoints(this.state.opp_Gk);
+        var Goalkeeper_new_opponent = this.calculateGKPoints(this.state.opp_Gk, this.state.opp_captain, this.state.opp_vice_captain);
         // console.log(Goalkeeper_new_opponent);
 
-        var Defender_new_opponent = this.calculateDefPoints(this.state.opp_Def);
+        var Defender_new_opponent = this.calculateDefPoints(this.state.opp_Def, this.state.opp_captain, this.state.opp_vice_captain);
         //  console.log("Defender_new_oppon");
         //  console.log(Defender_new_opponent);
 
 
-        var Midfielder_new_opponent = this.calculateMidPoints(this.state.opp_Mid);
+        var Midfielder_new_opponent = this.calculateMidPoints(this.state.opp_Mid, this.state.opp_captain, this.state.opp_vice_captain);
         // console.log("Midfielder_new");
         // console.log(Midfielder_new_opponent);
 
-        var Attacker_new_opponent = this.calculateAttPoints(this.state.opp_Att);
+        var Attacker_new_opponent = this.calculateAttPoints(this.state.opp_Att, this.state.opp_captain, this.state.opp_vice_captain);
         // console.log("Attacker_new");
         // console.log(Attacker_new_opponent);
 
@@ -121,7 +121,7 @@ class MatchStarted extends React.Component {
     }
 
 
-    calculateGKPoints = (Goalkeeper) => {
+    calculateGKPoints = (Goalkeeper, Captain, Vice_Captain) => {
 
         // check in team 1 of response
 
@@ -195,10 +195,10 @@ class MatchStarted extends React.Component {
                     GkPoints -= this.state.player_stats[0].players[i].statistics[0].penalty.missed * 20;
                 }
 
-                if (this.state.player_stats[0].players[i].player.id === this.props.captain) {
+                if (this.state.player_stats[0].players[i].player.id === Captain) {
                     GkPoints *= 2;
                 }
-                if (this.state.player_stats[0].players[i].player.id === this.props.vice_captain) {
+                if (this.state.player_stats[0].players[i].player.id === Vice_Captain) {
                     GkPoints *= 1.5;
                 }
 
@@ -274,10 +274,10 @@ class MatchStarted extends React.Component {
                     GkPoints -= this.state.player_stats[1].players[i].statistics[0].penalty.missed * 20;
                 }
 
-                if (this.state.player_stats[1].players[i].player.id === this.props.captain) {
+                if (this.state.player_stats[1].players[i].player.id === Captain) {
                     GkPoints *= 2;
                 }
-                if (this.state.player_stats[1].players[i].player.id === this.props.vice_captain) {
+                if (this.state.player_stats[1].players[i].player.id === Vice_Captain) {
                     GkPoints *= 1.5;
                 }
 
@@ -291,7 +291,7 @@ class MatchStarted extends React.Component {
         // console.log(GkPoints);   
     }
 
-    calculateDefPoints = (Defender) => {
+    calculateDefPoints = (Defender, Captain, Vice_Captain) => {
 
         for (let k = 0; k < Defender.length; k++) {
             var DefPoints = 0;
@@ -359,10 +359,10 @@ class MatchStarted extends React.Component {
                         DefPoints -= this.state.player_stats[0].players[i].statistics[0].penalty.missed * 20;
                     }
 
-                    if (this.state.player_stats[0].players[i].player.id === this.props.captain) {
+                    if (this.state.player_stats[0].players[i].player.id === Captain) {
                         DefPoints *= 2;
                     }
-                    if (this.state.player_stats[0].players[i].player.id === this.props.vice_captain) {
+                    if (this.state.player_stats[0].players[i].player.id === Vice_Captain) {
                         DefPoints *= 1.5;
                     }
 
@@ -460,12 +460,12 @@ class MatchStarted extends React.Component {
                         // console.log("pen miss")
                     }
 
-                    if (this.state.player_stats[1].players[i].player.id === this.props.captain) {
+                    if (this.state.player_stats[1].players[i].player.id === Captain) {
                         DefPoints *= 2;
                         // console.log(DefPoints)
                         // console.log("capt")
                     }
-                    if (this.state.player_stats[1].players[i].player.id === this.props.vice_captain) {
+                    if (this.state.player_stats[1].players[i].player.id === Vice_Captain) {
                         DefPoints *= 1.5;
                         // console.log(DefPoints)
                         // console.log("vc")
@@ -484,7 +484,7 @@ class MatchStarted extends React.Component {
 
     }
 
-    calculateMidPoints = (Midfielder) => {
+    calculateMidPoints = (Midfielder, Captain, Vice_Captain) => {
 
         for (let j = 0; j < 2; j++) {
             for (let k = 0; k < Midfielder.length; k++) {
@@ -557,10 +557,10 @@ class MatchStarted extends React.Component {
                             MidPoints -= this.state.player_stats[j].players[i].statistics[0].penalty.missed * 20;
                         }
 
-                        if (this.state.player_stats[j].players[i].player.id === this.props.captain) {
+                        if (this.state.player_stats[j].players[i].player.id === Captain) {
                             MidPoints *= 2;
                         }
-                        if (this.state.player_stats[j].players[i].player.id === this.props.vice_captain) {
+                        if (this.state.player_stats[j].players[i].player.id === Vice_Captain) {
                             MidPoints *= 1.5;
 
                         }
@@ -582,7 +582,7 @@ class MatchStarted extends React.Component {
         return Midfielder;
     }
 
-    calculateAttPoints = (Attacker) => {
+    calculateAttPoints = (Attacker, Captain, Vice_Captain) => {
 
         for (let j = 0; j < 2; j++) {
             for (let k = 0; k < Attacker.length; k++) {
@@ -655,11 +655,11 @@ class MatchStarted extends React.Component {
                             AttPoints -= this.state.player_stats[j].players[i].statistics[0].penalty.missed * 20;
                         }
 
-                        if (this.state.player_stats[j].players[i].player.id === this.props.captain) {
+                        if (this.state.player_stats[j].players[i].player.id === Captain) {
                             AttPoints *= 2;
 
                         }
-                        if (this.state.player_stats[j].players[i].player.id === this.props.vice_captain) {
+                        if (this.state.player_stats[j].players[i].player.id === Vice_Captain) {
                             AttPoints *= 1.5;
 
                         }

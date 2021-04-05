@@ -10,7 +10,7 @@ body {
 }
 
 .welcome{
-  background-color: black;
+ // background-color: black;
 
   height: 10px;
 
@@ -43,28 +43,28 @@ body {
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  opacity: 0;
+  opacity: 0;         
   z-index: 0;
   animation: imageAnimation 50s linear infinite; 
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url(https://experiences.lastminute.com/content/img/product/large/arsenal-stadium-tour-25105220.jpg); 
+  background-image: url(https://images.unsplash.com/photo-1605792657660-596af9009e82?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1982&q=80); 
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(https://static.standard.co.uk/s3fs-public/thumbnails/image/2020/06/26/00/liverpool-anfield-250620zv.jpg);
+  background-image: url(https://experiences.lastminute.com/content/img/product/large/arsenal-stadium-tour-25105220.jpg);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: url(https://www.telegraph.co.uk/content/dam/football/2017/12/06/TELEMMGLPICT000147096378_trans_NvBQzQNjv4Bq6GsIbqkfGgLbZAsoNaCr2wqe2e5lIAHHRgI1UVRX-8Y.jpeg);
+  background-image: url(https://travelfree.info/wp-content/uploads/2015/12/borussia-dortmund-fans.jpg);
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-  background-image: url(https://www.mumbaiindians.com/static-assets/images/cssimages/banner-3.jpg);
+  background-image: url(https://www.telegraph.co.uk/content/dam/football/2017/12/06/TELEMMGLPICT000147096378_trans_NvBQzQNjv4Bq6GsIbqkfGgLbZAsoNaCr2wqe2e5lIAHHRgI1UVRX-8Y.jpeg);
   animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
-  background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+  background-image: url(https://static.standard.co.uk/s3fs-public/thumbnails/image/2020/06/26/00/liverpool-anfield-250620zv.jpg);
   animation-delay: 40s; 
 }
 
