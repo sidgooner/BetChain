@@ -66,8 +66,7 @@ class PaymentPage extends React.Component {
   betOnTeam = async (team, amount) => {
     amount = amount * 1000000000000000000;
     this.state.betting.methods.doBet().send({ from: localStorage.getItem('user'), value: amount }, ()=>{
-      var matchId= this.props.match.params.matchId;
-  
+      var matchId= this.props.match.params.id;
         var user_name= localStorage.getItem('user');
         
         fetch('http://localhost:1337/api/bet', {
@@ -121,6 +120,7 @@ class PaymentPage extends React.Component {
   }
 
   render() {
+    
     return (
       <div className="page">
 

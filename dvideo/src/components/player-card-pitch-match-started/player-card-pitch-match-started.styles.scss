@@ -19,11 +19,34 @@
     cursor:pointer;
     overflow: hidden;
     margin: 2px;
+    background-color: #85e085;
+  }
+  .player-card-pitch-started-captain.card{
+    height: 130px;
+    transition:0.5s;
+    cursor:pointer;
+    overflow: hidden;
+    margin: 2px;
+    background-color: #ffff66;
+  }
+  .player-card-pitch-started-vice_captain.card{
+    height: 130px;
+    transition:0.5s;
+    cursor:pointer;
+    overflow: hidden;
+    margin: 2px;
+    background-color:#a6a6a6;
+  }
+  .player-position-pitch-started.card-text{
+    font-size: small;
+    overflow: hidden;
   }
   .player-name-pitch-started{  
     font-size:0.6em;
     transition:1s;
-
+    color:black;
+    font-size: small;
+    overflow: hidden;
     cursor:pointer;
     
   }

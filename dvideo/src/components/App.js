@@ -38,7 +38,7 @@ class App extends Component {
         <Route  path="/points" component={Points}/>
         <Route path='/player-detail/:playerId' component={PlayerDetails}></Route>
         <Route exact path='/admin' component={Admin}/>
-        <Route path='/admin/:mathId' component={AdminMatch} />
+        <Route path='/admin/:matchId' component={AdminMatch} />
       
       </div>
     )

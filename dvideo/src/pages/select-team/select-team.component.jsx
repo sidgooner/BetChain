@@ -62,7 +62,7 @@ class SelectTeamPage extends React.Component {
         var matchId = this.props.match.params.matchId;
 
 
-        // ==================== fetch match data===============================
+        // // ==================== fetch match data===============================
 
         //      var fixture_data = [];
 
@@ -463,7 +463,7 @@ class SelectTeamPage extends React.Component {
                     <Row >
                         <Col>
                             <h2>Deadline has Passed!!</h2>
-                            <h3>Your Team:</h3>
+                            
                         </Col>
                     </Row>
                     {(this.state.team_selected.length > 0) ?

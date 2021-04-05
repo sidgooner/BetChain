@@ -66,15 +66,6 @@ class Admin extends React.Component {
 
   }
 
-  distribute = async () => {
-    if (this.state.contest_data[0].user1_pts && this.state.contest_data[0].user2_pts && this.state.contest_data[0].user1_pts > this.state.contest_data[0].user2_pts) {
-      await this.state.betting.methods.distribute(this.state.contest_data[0].user1).send({ from: localStorage.getItem('user') });
-    }
-    else {
-      await this.state.betting.methods.distribute(this.state.contest_data[0].user2).send({ from: localStorage.getItem('user') });
-    }
-  }
-
   render() {
     console.log(this.state);
     if (this.state.contest_data) {
@@ -92,9 +83,6 @@ class Admin extends React.Component {
                     <Col>
                       <h5>{contest.user2}</h5>
                     </Col>
-                  </Row>
-                  <Row>
-                    <Button variant='primary' onClick={() => { this.distribute() }}>Distribute</Button>
                   </Row>
                 </Container>
                 </Link>

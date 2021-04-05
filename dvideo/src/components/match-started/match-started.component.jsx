@@ -10,16 +10,17 @@ class MatchStarted extends React.Component {
 
         this.state = {
             player_stats: null,
-            total_points: 0,
+            total_points1: 0,
             opp_Gk: [],
             opp_Def: [],
             opp_Mid: [],
             opp_Att: [],
             opp_points: 0,
             opp_captain: 0,
-            opp_vice_captain: 0, 
+            opp_vice_captain: 0,
             opp_user_name: null,
-            opp_total_points: 0
+            opp_total_points: 0,
+            total_points2: 0
         }
     }
 
@@ -54,14 +55,16 @@ class MatchStarted extends React.Component {
         // console.log(PLAYER_STATS.response);
 
         console.log("opponent_data")
-       await fetch(`http://localhost:1337/api/get-opponent/${this.props.matchId}/${localStorage.getItem('user')}`)
-            .then((response)=>response.json())
-            .then((data)=>{
-                this.setState({opp_Gk: data.Goalkeeper, opp_Mid: data.Midfielder, opp_Def: data.Defender, opp_Att: data.Attacker, opp_user_name: data.user_name, opp_total_points: data.points});
+        await fetch(`http://localhost:1337/api/get-opponent/${this.props.matchId}/${localStorage.getItem('user')}`)
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({ opp_Gk: data.Goalkeeper, opp_Mid: data.Midfielder, opp_Def: data.Defender, opp_Att: data.Attacker, opp_user_name: data.user_name, opp_total_points: data.points, opp_captain: data.captain, opp_vice_captain: data.viceCaptain });
 
-            }).then(()=>console.log(this.state)) ;
+            }).then(() => {
+                //    console.log(this.state)
+            });
 
-        
+
 
 
 
@@ -85,28 +88,18 @@ class MatchStarted extends React.Component {
         var Attacker_new = this.calculateAttPoints(this.props.Attacker);
         // console.log("Attacker_new");
         // console.log(Attacker_new);
-        
-        var total_points = this.calculateTotalPoints(Goalkeeper_new) + this.calculateTotalPoints(Defender_new)+ this.calculateTotalPoints(Midfielder_new)+ this.calculateTotalPoints(Attacker_new);
+
+        var total_points = this.calculateTotalPoints(Goalkeeper_new) + this.calculateTotalPoints(Defender_new) + this.calculateTotalPoints(Midfielder_new) + this.calculateTotalPoints(Attacker_new);
 
         // console.log("total pts")
         // console.log(total_points);
 
-      await fetch(`http://localhost:1337/api/update-pts/${localStorage.getItem('user')}/${this.props.matchId}`, {
-            method: 'post',
+        this.setState({ total_points1: total_points });
 
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
 
-                Goalkeeper_new, Defender_new, Midfielder_new, Attacker_new, total_points
-            })
-        }).then(() => {
-            //console.log(this.props.Goalkeeper);
-        });
-        
+
         var Goalkeeper_new_opponent = this.calculateGKPoints(this.state.opp_Gk);
-       // console.log(Goalkeeper_new_opponent);
+        // console.log(Goalkeeper_new_opponent);
 
         var Defender_new_opponent = this.calculateDefPoints(this.state.opp_Def);
         //  console.log("Defender_new_oppon");
@@ -120,20 +113,10 @@ class MatchStarted extends React.Component {
         var Attacker_new_opponent = this.calculateAttPoints(this.state.opp_Att);
         // console.log("Attacker_new");
         // console.log(Attacker_new_opponent);
-    
-        await fetch(`http://localhost:1337/api/update-pts/${this.state.opp_user_name}/${this.props.matchId}`, {
-            method: 'post',
 
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
+        var total_points = this.calculateTotalPoints(Goalkeeper_new_opponent) + this.calculateTotalPoints(Defender_new_opponent) + this.calculateTotalPoints(Midfielder_new_opponent) + this.calculateTotalPoints(Attacker_new_opponent);
 
-                Goalkeeper_new_opponent, Defender_new_opponent, Midfielder_new_opponent, Attacker_new_opponent
-            })
-        }).then(() => {
-           // console.log(this.state.opp_Gk);
-        });
+        this.setState({ total_points2: total_points });
 
     }
 
@@ -600,7 +583,7 @@ class MatchStarted extends React.Component {
     }
 
     calculateAttPoints = (Attacker) => {
-        
+
         for (let j = 0; j < 2; j++) {
             for (let k = 0; k < Attacker.length; k++) {
                 var AttPoints = 0;
@@ -682,8 +665,8 @@ class MatchStarted extends React.Component {
                         }
 
                         //console.log(this.props.vice_captain)
-                    //    console.log(this.state.player_stats[j].players[i].player.name);
-                    //     console.log(AttPoints);
+                        //    console.log(this.state.player_stats[j].players[i].player.name);
+                        //     console.log(AttPoints);
                         Attacker[k]['points'] = AttPoints;
                     }
 
@@ -698,88 +681,185 @@ class MatchStarted extends React.Component {
         return Attacker;
     }
 
-    calculateTotalPoints=(Players)=>{
-        
+    calculateTotalPoints = (Players) => {
+
         var total_pts_temp = 0;
 
-        for(let i=0; i<Players.length; i++)
-        {
-           total_pts_temp += Players[i].points;
+        for (let i = 0; i < Players.length; i++) {
+            total_pts_temp += Players[i].points;
         }
 
         return total_pts_temp;
     }
 
     render() {
-       
+
 
         console.log(this.state);
         return (
-            <Col className='pitch-started'>
-                <Container>
-                    <Row className='justify-content-center'>
-                        {
-                            this.props.Goalkeeper.map((member, key) => (
+            <Container>
+                <Row>
+                    <Col className='pitch-started'>
+                        <Row>Your Team:</Row>
+                        <Container>
+                            <Row className='justify-content-center'>
+                                {
+                                    this.props.Goalkeeper.map((member, key) => (
 
-                                <PlayerCardPitchStarted
-                                    id={member.player.id}
-                                    first_name={member.player.firstname}
-                                    last_name={member.player.lastname}
-                                    imageUrl={member.player.photo}
-                                    key={key}
-                                    position={member.statistics[0].games.position}
-                                />
+                                        <PlayerCardPitchStarted
+                                            id={member.player.id}
+                                            first_name={member.player.firstname}
+                                            last_name={member.player.lastname}
+                                            imageUrl={member.player.photo}
+                                            key={key}
+                                            position={member.statistics[0].games.position}
+                                            points={member.points}
+                                            captain={this.props.captain}
+                                            vice_captain={this.props.vice_captain}
+                                        />
 
-                            ))
-                        }
-                    </Row>
-                    <Row className='justify-content-center'>{
-                        this.props.Defender.map((member, key) => (
+                                    ))
+                                }
+                            </Row>
+                            <Row className='justify-content-center'>{
+                                this.props.Defender.map((member, key) => (
 
-                            <PlayerCardPitchStarted
-                                id={member.player.id}
-                                first_name={member.player.firstname}
-                                last_name={member.player.lastname}
-                                imageUrl={member.player.photo}
-                                key={key}
-                                position={member.statistics[0].games.position}
-                            />
+                                    <PlayerCardPitchStarted
+                                        id={member.player.id}
+                                        first_name={member.player.firstname}
+                                        last_name={member.player.lastname}
+                                        imageUrl={member.player.photo}
+                                        key={key}
+                                        position={member.statistics[0].games.position}
+                                        points={member.points}
+                                        captain={this.props.captain}
+                                        vice_captain={this.props.vice_captain}
+                                    />
 
-                        ))
-                    }
-                    </Row>
-                    <Row className='justify-content-center'>
-                        {
-                            this.props.Midfielder.map((member, key) => (
+                                ))
+                            }
+                            </Row>
+                            <Row className='justify-content-center'>
+                                {
+                                    this.props.Midfielder.map((member, key) => (
 
-                                <PlayerCardPitchStarted
-                                    id={member.player.id}
-                                    first_name={member.player.firstname}
-                                    last_name={member.player.lastname}
-                                    imageUrl={member.player.photo}
-                                    key={key}
-                                    position={member.statistics[0].games.position}
-                                />
+                                        <PlayerCardPitchStarted
+                                            id={member.player.id}
+                                            first_name={member.player.firstname}
+                                            last_name={member.player.lastname}
+                                            imageUrl={member.player.photo}
+                                            key={key}
+                                            position={member.statistics[0].games.position}
+                                            points={member.points}
+                                            captain={this.props.captain}
+                                            vice_captain={this.props.vice_captain}
+                                        />
 
-                            ))
-                        }
-                    </Row>
-                    <Row className='justify-content-center'>{
-                        this.props.Attacker.map((member, key) => (
+                                    ))
+                                }
+                            </Row>
+                            <Row className='justify-content-center'>{
+                                this.props.Attacker.map((member, key) => (
 
-                            <PlayerCardPitchStarted
-                                id={member.player.id}
-                                first_name={member.player.firstname}
-                                last_name={member.player.lastname}
-                                imageUrl={member.player.photo}
-                                key={key}
-                                position={member.statistics[0].games.position}
-                            />
+                                    <PlayerCardPitchStarted
+                                        id={member.player.id}
+                                        first_name={member.player.firstname}
+                                        last_name={member.player.lastname}
+                                        imageUrl={member.player.photo}
+                                        key={key}
+                                        position={member.statistics[0].games.position}
+                                        points={member.points}
+                                        captain={this.props.captain}
+                                        vice_captain={this.props.vice_captain}
+                                    />
 
-                        ))
-                    }</Row>
-                </Container>
-            </Col>
+                                ))
+                            }</Row>
+                        </Container>
+                        <Row className='total-points'>Your points: {this.state.total_points1}</Row>
+                    </Col>
+
+                    <Col className='pitch-started'>
+                        <Container>
+                            <Row>opposition team: </Row>
+                            <Row className='justify-content-center'>
+                                {
+                                    this.state.opp_Gk.map((member, key) => (
+
+                                        <PlayerCardPitchStarted
+                                            id={member.player.id}
+                                            first_name={member.player.firstname}
+                                            last_name={member.player.lastname}
+                                            imageUrl={member.player.photo}
+                                            key={key}
+                                            position={member.statistics[0].games.position}
+                                            points={member.points}
+                                            captain={this.state.opp_captain}
+                                            vice_captain={this.state.opp_vice_captain}
+                                        />
+
+                                    ))
+                                }
+                            </Row>
+                            <Row className='justify-content-center'>{
+                                this.state.opp_Def.map((member, key) => (
+
+                                    <PlayerCardPitchStarted
+                                        id={member.player.id}
+                                        first_name={member.player.firstname}
+                                        last_name={member.player.lastname}
+                                        imageUrl={member.player.photo}
+                                        key={key}
+                                        position={member.statistics[0].games.position}
+                                        points={member.points}
+                                        captain={this.state.opp_captain}
+                                        vice_captain={this.state.opp_vice_captain}
+                                    />
+
+                                ))
+                            }
+                            </Row>
+                            <Row className='justify-content-center'>
+                                {
+                                    this.state.opp_Mid.map((member, key) => (
+
+                                        <PlayerCardPitchStarted
+                                            id={member.player.id}
+                                            first_name={member.player.firstname}
+                                            last_name={member.player.lastname}
+                                            imageUrl={member.player.photo}
+                                            key={key}
+                                            position={member.statistics[0].games.position}
+                                            points={member.points}
+                                            captain={this.state.opp_captain}
+                                            vice_captain={this.state.opp_vice_captain}
+                                        />
+
+                                    ))
+                                }
+                            </Row>
+                            <Row className='justify-content-center'>{
+                                this.state.opp_Att.map((member, key) => (
+
+                                    <PlayerCardPitchStarted
+                                        id={member.player.id}
+                                        first_name={member.player.firstname}
+                                        last_name={member.player.lastname}
+                                        imageUrl={member.player.photo}
+                                        key={key}
+                                        position={member.statistics[0].games.position}
+                                        points={member.points}
+                                        captain={this.state.opp_captain}
+                                        vice_captain={this.state.opp_vice_captain}
+                                    />
+
+                                ))
+                            }</Row>
+                        </Container>
+                        <Row className='total-points'>Opponent points: {this.state.total_points2}</Row>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }
