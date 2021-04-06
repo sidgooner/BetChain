@@ -2,6 +2,7 @@ import React from 'react'
 import { squad_data } from '../../components/squad/squad_data';
 import {Container} from 'react-bootstrap'
 import './player-details.styles.scss'
+import Navbar1 from '../../components/navbar/navbar.component';
 
 class PlayerDetails extends React.Component{
     constructor(props)
@@ -23,6 +24,7 @@ class PlayerDetails extends React.Component{
         return(
             
            <div>
+             <Navbar1></Navbar1>
             <h1 className="heading">Player-Details</h1>
 
             <Container>

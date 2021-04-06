@@ -5,6 +5,7 @@ import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap'
 import Web3 from 'web3'
 import ContestPage from '../contest-page/contest-page.component'
 import TeamCard from '../../components/team-card/team-card.component'
+import Navbar1 from '../../components/navbar/navbar.component'
 
 class PaymentPage extends React.Component {
 
@@ -150,6 +151,7 @@ class PaymentPage extends React.Component {
               <button type="submit">Distribute</button>
               </form>
             </div>} */}
+            <Navbar1></Navbar1>
         <Container>
           <Row>
             <h3>5 eth Contest</h3>

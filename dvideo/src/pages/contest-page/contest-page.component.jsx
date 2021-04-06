@@ -4,6 +4,7 @@ import './contest-page.styles.scss'
 import { Link } from 'react-router-dom'
 import { CONTEST_DATA } from './contest-data';
 import {Card, Row, Col, Button, Container, Carousel}  from 'react-bootstrap'
+import Navbar1 from '../../components/navbar/navbar.component';
 
 class ContestPage extends React.Component {
     constructor(props) {
@@ -51,7 +52,9 @@ class ContestPage extends React.Component {
         return (
             // <h1>hi</h1>
             this.state.fixture_data ? (
-                <div>    <h1 className="heading">Bet-Chain</h1>
+                <div>
+               
+                    <Navbar1></Navbar1>
                 <Container className="tiles">
                     <Row>
                     <Carousel>

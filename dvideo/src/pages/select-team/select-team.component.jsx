@@ -12,6 +12,7 @@ import PlayerCardPitchStarted from '../../components/player-card-pitch-match-sta
 import { FIXTURE_DATA } from './fixture-data';
 import MatchStarted from '../../components/match-started/match-started.component';
 import { withRouter, useHistory } from 'react-router-dom'
+import Navbar1 from '../../components/navbar/navbar.component';
 //const history = useHistory();
 
 class SelectTeamPage extends React.Component {
@@ -327,36 +328,53 @@ class SelectTeamPage extends React.Component {
         console.log(localStorage.getItem('user'));
         if (!this.state.showCaptain && this.state.fixture_data && this.state.fixture_data[0].fixture.status.short === 'FT') {
             return (
-                <Container>
-                    <Row>
-                        {(this.state.home_team && this.state.fixture_data) ? (
-                            <Col className='player-cards'>
+                <div>
+                    <Navbar1></Navbar1>
+                    <Container>
+                        <Row>
+                            {(this.state.home_team && this.state.fixture_data) ? (
+                                <Col className='player-cards'>
 
-                                {
-
-                                    this.state.home_team.map((member, key) => (
-
-                                        <button className="player-button" onClick={() => { this.selectPlayer(member) }}>
-                                            <PlayerCard
-                                                id={member.player.id}
-                                                name={member.player.name}
-                                                imageUrl={member.player.photo}
-                                                key={key}
-                                                position={member.statistics[0].games.position}
-                                            />
-                                        </button>
-
-                                    ))
-                                }
-
-                            </Col>) : (<h1>wait</h1>)
-
-                        }
-                        <Col className='pitch'>
-                            <Container>
-                                <Row className='justify-content-center'>
                                     {
-                                        this.state.Goalkeeper.map((member, key) => (
+
+                                        this.state.home_team.map((member, key) => (
+
+                                            <button className="player-button" onClick={() => { this.selectPlayer(member) }}>
+                                                <PlayerCard
+                                                    id={member.player.id}
+                                                    name={member.player.name}
+                                                    imageUrl={member.player.photo}
+                                                    key={key}
+                                                    position={member.statistics[0].games.position}
+                                                />
+                                            </button>
+
+                                        ))
+                                    }
+
+                                </Col>) : (<h1>wait</h1>)
+
+                            }
+                            <Col className='pitch'>
+                                <Container>
+                                    <Row className='justify-content-center'>
+                                        {
+                                            this.state.Goalkeeper.map((member, key) => (
+                                                <button className="player-button" onClick={() => { this.removePlayer(member) }}>
+                                                    <PlayerCardPitch
+                                                        id={member.player.id}
+                                                        first_name={member.player.firstname}
+                                                        last_name={member.player.lastname}
+                                                        imageUrl={member.player.photo}
+                                                        key={key}
+                                                        position={member.statistics[0].games.position}
+                                                    />
+                                                </button>
+                                            ))
+                                        }
+                                    </Row>
+                                    <Row className='justify-content-center'>{
+                                        this.state.Defender.map((member, key) => (
                                             <button className="player-button" onClick={() => { this.removePlayer(member) }}>
                                                 <PlayerCardPitch
                                                     id={member.player.id}
@@ -369,25 +387,25 @@ class SelectTeamPage extends React.Component {
                                             </button>
                                         ))
                                     }
-                                </Row>
-                                <Row className='justify-content-center'>{
-                                    this.state.Defender.map((member, key) => (
-                                        <button className="player-button" onClick={() => { this.removePlayer(member) }}>
-                                            <PlayerCardPitch
-                                                id={member.player.id}
-                                                first_name={member.player.firstname}
-                                                last_name={member.player.lastname}
-                                                imageUrl={member.player.photo}
-                                                key={key}
-                                                position={member.statistics[0].games.position}
-                                            />
-                                        </button>
-                                    ))
-                                }
-                                </Row>
-                                <Row className='justify-content-center'>
-                                    {
-                                        this.state.Midfielder.map((member, key) => (
+                                    </Row>
+                                    <Row className='justify-content-center'>
+                                        {
+                                            this.state.Midfielder.map((member, key) => (
+                                                <button className="player-button" onClick={() => { this.removePlayer(member) }}>
+                                                    <PlayerCardPitch
+                                                        id={member.player.id}
+                                                        first_name={member.player.firstname}
+                                                        last_name={member.player.lastname}
+                                                        imageUrl={member.player.photo}
+                                                        key={key}
+                                                        position={member.statistics[0].games.position}
+                                                    />
+                                                </button>
+                                            ))
+                                        }
+                                    </Row>
+                                    <Row className='justify-content-center'>{
+                                        this.state.Attacker.map((member, key) => (
                                             <button className="player-button" onClick={() => { this.removePlayer(member) }}>
                                                 <PlayerCardPitch
                                                     id={member.player.id}
@@ -399,100 +417,93 @@ class SelectTeamPage extends React.Component {
                                                 />
                                             </button>
                                         ))
-                                    }
-                                </Row>
-                                <Row className='justify-content-center'>{
-                                    this.state.Attacker.map((member, key) => (
-                                        <button className="player-button" onClick={() => { this.removePlayer(member) }}>
-                                            <PlayerCardPitch
-                                                id={member.player.id}
-                                                first_name={member.player.firstname}
-                                                last_name={member.player.lastname}
-                                                imageUrl={member.player.photo}
-                                                key={key}
-                                                position={member.statistics[0].games.position}
-                                            />
-                                        </button>
-                                    ))
-                                }</Row>
-                            </Container>
-                        </Col>
-                    </Row>
-                    <Row>
+                                    }</Row>
+                                </Container>
+                            </Col>
+                        </Row>
+                        <Row>
 
-                        <Button variant='success' onClick={() => { this.showCvc() }}>Choose your Commanders!!</Button>
+                            <Button variant='success' onClick={() => { this.showCvc() }}>Choose your Commanders!!</Button>
 
-                    </Row>
-                </Container>
+                        </Row>
+                    </Container>
+                </div>
 
             )
         }
 
         else if (this.state.showCaptain && this.state.fixture_data && this.state.fixture_data[0].fixture.status.short === 'FT') {
-            return (<Container>
-                <Row>
-                    <Col>
-                        {
-                            this.state.team_selected.map((member, key) => (
-                                <Row>
-                                    <ShowCVc
-                                        id={member.player.id}
-                                        name={member.player.name}
-                                        imageUrl={member.player.photo}
-                                        position={member.statistics[0].games.position}
-                                        key={key}
-                                        selectCaptain={this.selectCaptain}
-                                        selectViceCaptain={this.selectViceCaptain}
-                                        captain={this.state.captain}
-                                        viceCaptain={this.state.vice_captain}
-                                    />
-                                </Row>
-                            ))
-                        }
+            return (
+                <div>
+                    <Navbar1></Navbar1>
+                    <Container>
                         <Row>
-                            <Button variant='success' onClick={() => { this.selectTeam() }}>Select Team!</Button>
+                            <Col>
+                                {
+                                    this.state.team_selected.map((member, key) => (
+                                        <Row>
+                                            <ShowCVc
+                                                id={member.player.id}
+                                                name={member.player.name}
+                                                imageUrl={member.player.photo}
+                                                position={member.statistics[0].games.position}
+                                                key={key}
+                                                selectCaptain={this.selectCaptain}
+                                                selectViceCaptain={this.selectViceCaptain}
+                                                captain={this.state.captain}
+                                                viceCaptain={this.state.vice_captain}
+                                            />
+                                        </Row>
+                                    ))
+                                }
+                                <Row>
+                                    <Button variant='success' onClick={() => { this.selectTeam() }}>Select Team!</Button>
+                                </Row>
+                            </Col>
                         </Row>
-                    </Col>
-                </Row>
-            </Container>)
+                    </Container>
+                </div>)
         }
 
         else {
             return (
-                <Container>
-                    <Row >
-                        <Col>
-                            <h2>Deadline has Passed!!</h2>
-                            
-                        </Col>
-                    </Row>
-                    {(this.state.team_selected.length > 0) ?
-                        (<Row className='match-started'>
-                            {
-                                (this.state.fixture_data) ?
-                                    (
-                                        <MatchStarted
-                                            Goalkeeper={this.state.Goalkeeper}
-                                            Defender={this.state.Defender}
-                                            Midfielder={this.state.Midfielder}
-                                            Attacker={this.state.Attacker}
-                                            matchId={this.props.match.params.matchId}
-                                            captain={this.state.captain}
-                                            vice_captain={this.state.vice_captain}
-                                        ></MatchStarted>
-
-                                    ) :
-                                    (<h1>wait</h1>)
-                            }
-                        </Row>) :
-                        (<Row>
+                <div>
+                    <Navbar1></Navbar1>
+                    <Container>
+                        <Row >
                             <Col>
-                                <h1>
-                                    You did not select a Team for this match
-                        </h1>
+                                <h2>Deadline has Passed!!</h2>
+
                             </Col>
-                        </Row>)}
-                </Container>
+                        </Row>
+                        {(this.state.team_selected.length > 0) ?
+                            (<Row className='match-started'>
+                                {
+                                    (this.state.fixture_data) ?
+                                        (
+                                            <MatchStarted
+                                                Goalkeeper={this.state.Goalkeeper}
+                                                Defender={this.state.Defender}
+                                                Midfielder={this.state.Midfielder}
+                                                Attacker={this.state.Attacker}
+                                                matchId={this.props.match.params.matchId}
+                                                captain={this.state.captain}
+                                                vice_captain={this.state.vice_captain}
+                                            ></MatchStarted>
+
+                                        ) :
+                                        (<h1>wait</h1>)
+                                }
+                            </Row>) :
+                            (<Row>
+                                <Col>
+                                    <h1>
+                                        You did not select a Team for this match
+                        </h1>
+                                </Col>
+                            </Row>)}
+                    </Container>
+                </div>
             )
         }
     }
