@@ -2,7 +2,7 @@
 <br/>
 
 ## Video demo
-[![BetChain Demo](https://img.youtube.com/vi/Vm99V08e0x0&ab/0.jpg)](https://www.youtube.com/watch?v=Vm99V08e0x0&ab)
+[![BetChain Demo](https://i9.ytimg.com/vi/Vm99V08e0x0/maxresdefault.jpg?time=1624100700000&sqp=CNyet4YG&rs=AOn4CLB3BU5hEM4buqwTybEzcDVWMHPZ5w)](https://www.youtube.com/watch?v=Vm99V08e0x0&ab)
 
 
 ## step 1 :login to your account
