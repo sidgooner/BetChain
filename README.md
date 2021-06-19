@@ -1,6 +1,10 @@
 # BetChain Workflow
 <br/>
 
+## Video demo
+[![BetChain Demo](https://img.youtube.com/vi/Vm99V08e0x0&ab/0.jpg)](https://www.youtube.com/watch?v=Vm99V08e0x0&ab)
+
+
 ## step 1 :login to your account
 
 ![Screenshot from 2021-06-18 23-22-13](https://user-images.githubusercontent.com/45328836/122600707-d1937480-d08d-11eb-8c06-00c5bd6fd2af.png)
